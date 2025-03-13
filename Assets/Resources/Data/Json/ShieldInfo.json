@@ -1,0 +1,11 @@
+{
+	"items" : [
+	{
+		"ID" : 1,
+		"Code" : "NormalShield",
+		"Rarity" : 0,
+		"HP" : 0,
+		"Barrier" : 0
+		}
+	]
+}

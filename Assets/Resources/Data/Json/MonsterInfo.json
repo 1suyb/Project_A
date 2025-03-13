@@ -1,0 +1,20 @@
+{
+	"items" : [
+	{
+		"ID" : 1,
+		"Code" : "BLACKKNIGHT",
+		"HP" : 3,
+		"Barrier" : 0,
+		"MaxIdleTime" : 1,
+		"HasDefense" : true,
+		"AttackCount" : 3,
+		"AttackIDs" : [
+			1,
+			2,
+			3
+		],
+		"IdleActionChance" : 5,
+		"DefenseChance" : 5
+		}
+	]
+}

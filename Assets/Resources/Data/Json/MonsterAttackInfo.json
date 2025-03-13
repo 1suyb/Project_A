@@ -1,0 +1,25 @@
+{
+	"items" : [
+	{
+		"ID" : 1,
+		"Code" : "BLACKNIGHT_1",
+		"Damage" : 1,
+		"IsRange" : false,
+		"ProjectileID" : 0
+		},
+	{
+		"ID" : 2,
+		"Code" : "BLACKNIGHT_2",
+		"Damage" : 1,
+		"IsRange" : true,
+		"ProjectileID" : 1
+		},
+	{
+		"ID" : 3,
+		"Code" : "BLACKNIGHT_3",
+		"Damage" : 1,
+		"IsRange" : false,
+		"ProjectileID" : 0
+		}
+	]
+}
