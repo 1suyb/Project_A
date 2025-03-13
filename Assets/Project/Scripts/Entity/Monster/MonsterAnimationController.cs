@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,10 +25,67 @@ public class MonsterAnimationController : MonoBehaviour
     private int _hitHash;
     private int _dieHash;
     
-    private void Awake()
+    private Dictionary<int, StateBehaviour> _stateBehaviours = new Dictionary<int, StateBehaviour>();
+    
+    public void InitOnCreate()
     {
         HashSetUp();
+        _animator = GetComponentInChildren<Animator>();
     }
+
+    public void Disable()
+    {
+        AnimEventReset();
+    }
+
+    private T GetAnimState<T>() where T : StateBehaviour
+    {
+        int hash = Animator.StringToHash(typeof(T).Name);
+        T stateBehaviour;
+        if(_stateBehaviours.ContainsKey(hash))
+        {
+            stateBehaviour = _stateBehaviours[hash] as T;
+        }
+        else
+        {           
+            stateBehaviour = _animator.GetBehaviour<T>();
+            _stateBehaviours.Add(hash, stateBehaviour);    
+        }
+
+        return stateBehaviour;
+    }
+    
+    public void AddAnimEnterEvent<T>(Action action) where T : StateBehaviour
+    {
+        T stateBehaviour = GetAnimState<T>();
+        if(stateBehaviour) stateBehaviour.StateEnterEvent += action;
+        
+    }
+    public void AddAnimEndEvent<T>(Action action) where T : StateBehaviour
+    {
+        T stateBehaviour = GetAnimState<T>();
+        stateBehaviour.StateEndEvent += action;
+    }
+    public void RemoveAnimEnterEvent<T>(Action action) where T : StateBehaviour
+    {
+        T stateBehaviour = GetAnimState<T>();
+        stateBehaviour.StateEnterEvent -= action;
+    }
+    public void RemoveAnimEndEvent<T>(Action action) where T : StateBehaviour
+    {
+        T stateBehaviour = GetAnimState<T>();
+        stateBehaviour.StateEndEvent -= action;
+    }
+
+    public void AnimEventReset()
+    {
+        StateBehaviour[] stateBehaviours = _animator.GetBehaviours<StateBehaviour>();
+        foreach (var stateBehaviour in stateBehaviours)
+        {
+            stateBehaviour.ResetEvent();
+        }
+    }
+    
     
     private void HashSetUp()
     {
