@@ -13,6 +13,10 @@
 			2,
 			3
 		],
+		"MaxDefenseTime" : [
+			1,
+			2
+		],
 		"IdleActionChance" : 5,
 		"DefenseChance" : 5
 		}

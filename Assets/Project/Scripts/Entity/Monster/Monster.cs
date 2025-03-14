@@ -39,3 +39,28 @@ public class Monster : MonoBehaviour, ILoadable
     }
     
 }
+
+public class MonsterStatus
+{
+    
+}
+
+public class Stat
+{
+    public int Hp { get; private set; }
+    public int Barrier{ get; private set; }
+    public int BarrierBonusAttack{ get; private set; }
+    public int Attack{ get; private set; }
+    public int CriticalChance{ get; private set; } // 만분율
+    
+    public Stat(int hp, int barrier, int barrierBonusAttack, int attack, int criticalChance)
+    {
+        Hp = hp;
+        Barrier = barrier;
+        BarrierBonusAttack = barrierBonusAttack;
+        Attack = attack;
+        CriticalChance = criticalChance;
+    }
+    
+    
+}

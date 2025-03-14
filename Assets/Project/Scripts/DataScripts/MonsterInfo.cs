@@ -32,6 +32,10 @@ public class MonsterInfo : LoadedInfoBase
      /// </summary>
     public List<int> AttackIDs;
      /// <summary>
+     /// 방어시간
+     /// </summary>
+    public List<float> MaxDefenseTime;
+     /// <summary>
      /// 대기중 공격 확률 - 백분율
      /// </summary>
     public int IdleActionChance;
