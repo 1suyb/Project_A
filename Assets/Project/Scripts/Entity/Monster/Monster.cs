@@ -9,6 +9,8 @@ public class Monster : MonoBehaviour, ILoadable
     public MonsterAI MonsterAI { get; private set; }
     public MonsterPrefab MonsterPrefab { get; private set; }
 
+    public MonsterStatus MonsterStatus { get; private set; }
+    
     public void Awake()
     {
         Load(1);
@@ -21,11 +23,13 @@ public class Monster : MonoBehaviour, ILoadable
 
         MonsterAnimController = GetComponent<MonsterAnimationController>();
         MonsterAI = GetComponent<MonsterAI>();
+        MonsterStatus = GetComponent<MonsterStatus>();
         MonsterPrefab = prefab.GetComponent<MonsterPrefab>();
         
         
         MonsterAnimController.InitOnCreate();
         MonsterAI.InitOnCreate(this);
+        MonsterStatus.InitOnCreate(this);
         MonsterPrefab.InitOnCreate(this);
         
         InitOnActivate();
@@ -34,15 +38,19 @@ public class Monster : MonoBehaviour, ILoadable
     public void InitOnActivate()
     { 
         MonsterAI.InitOnActivate();
+        MonsterStatus.InitOnActivate();
         MonsterPrefab.InitOnActivate();
     }
     
-}
-
-public class MonsterStatus
-{
-    public StatHandler StatHandler { get; private set; }
-    public ConditionHandler ConditionHandler { get; private set; }
-    
+    public void TakeDamage(int damage)
+    {
+        MonsterStatus.TakeDamage(damage);
+        // 쳐맞는 애니메이션
+    }
+    public void Heal(int heal, bool isOverHeal = false)
+    {
+        MonsterStatus.Heal(heal, isOverHeal);
+        
+    }
     
 }

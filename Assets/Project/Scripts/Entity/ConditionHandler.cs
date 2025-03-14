@@ -8,6 +8,11 @@ public class ConditionHandler
 
     public Action DieEvent;
     
+    public ConditionHandler(Stat stat)
+    {
+        Hp = new Condition(stat.Hp);
+        Barrier = new Condition(stat.Barrier);
+    }
     public void TakeDamage(int damage)
     {
         Hp.Sub(damage);
