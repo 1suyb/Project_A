@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponName : LoadedInfoBase
+public class EquipmentString : LoadedInfoBase
 {
      /// <summary>
      /// 코드

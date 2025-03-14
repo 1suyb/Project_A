@@ -1,0 +1,20 @@
+{
+	"items" : [
+	{
+		"ID" : 101,
+		"Code" : "Equip_NormalSoward",
+		"OptionType" : 0,
+		"IsPercent" : false,
+		"Value" : 1,
+		"Time" : -1
+		},
+	{
+		"ID" : 201,
+		"Code" : "Equip_NormalShield",
+		"OptionType" : 2,
+		"IsPercent" : false,
+		"Value" : 1,
+		"Time" : -1
+		}
+	]
+}

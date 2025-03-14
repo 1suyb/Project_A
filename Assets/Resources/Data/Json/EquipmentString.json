@@ -1,0 +1,16 @@
+{
+	"items" : [
+	{
+		"ID" : 101,
+		"Code" : "NormalSword",
+		"Kor" : "기본 검",
+		"Eng" : "NormalSword"
+		},
+	{
+		"ID" : 201,
+		"Code" : "NormalShield",
+		"Kor" : "기본 방패",
+		"Eng" : "NormalShield"
+		}
+	]
+}

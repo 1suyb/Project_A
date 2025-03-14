@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponInfo : LoadedInfoBase
+public class EquipmentInfo : LoadedInfoBase
 {
      /// <summary>
      /// 코드
@@ -12,12 +12,12 @@ public class WeaponInfo : LoadedInfoBase
      /// </summary>
     public RarityType Rarity;
      /// <summary>
-     /// 공격 데미지
+     /// 종류
      /// </summary>
-    public int AttackDamage;
+    public EquipType EquipType;
      /// <summary>
-     /// 배리어 추가 데미지
+     /// 옵션Id들
      /// </summary>
-    public int BarrierBonusDamage;
+    public List<int> OptionIDs;
 }
 

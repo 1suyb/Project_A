@@ -1,0 +1,22 @@
+{
+	"items" : [
+	{
+		"ID" : 101,
+		"Code" : "NormalSword",
+		"Rarity" : 0,
+		"EquipType" : 0,
+		"OptionIDs" : [
+			101
+		]
+		},
+	{
+		"ID" : 201,
+		"Code" : "NormalShield",
+		"Rarity" : 0,
+		"EquipType" : 1,
+		"OptionIDs" : [
+			201
+		]
+		}
+	]
+}
