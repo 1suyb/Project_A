@@ -1,20 +1,7 @@
-using System;
 using UnityEngine;
 
-public class MonsterStatus : Status
+public class PlayerStatus : Status
 {
-    public Monster Monster { get; private set; }
-
-    public override void InitOnCreate(Entity entity)
-    {
-        base.InitOnCreate(entity);
-        Monster = entity as Monster;
-        if(Monster == null)
-        {
-            Debug.LogError("Entity is not Monster");
-            return;
-        }
-    }
     public override void InitOnActivate()
     {
         base.InitOnActivate();
@@ -25,13 +12,8 @@ public class MonsterStatus : Status
                   $"ConditionHandler\n HP : {ConditionHandler.Hp.ConditionValue}" +
                   $"Barrier : {ConditionHandler.Barrier.ConditionValue}");
     }
-    
     protected override Stat BaseStat()
     {
-        MonsterInfo info = Monster.MonsterInfo;
-        return new StatBuilder()
-            .Hp(info.HP)
-            .Barrier(info.Barrier)
-            .Build();
+        return new StatBuilder().Hp(3).Attack(1).Build();
     }
 }

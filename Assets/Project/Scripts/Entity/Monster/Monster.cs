@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Monster : MonoBehaviour, ILoadable
+public class Monster : Entity, ILoadable
 {
     private MonsterInfo _monsterInfo;
     public MonsterInfo MonsterInfo => _monsterInfo;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class StatHandler
@@ -8,6 +9,8 @@ public class StatHandler
     
     private List<Stat> _addModifier = new List<Stat>();
     private List<Stat> _multiplierModifier = new List<Stat>();
+    
+    public event Action<Stat> ChangeEvent;
     
     public StatHandler(Stat stat)
     {
@@ -38,6 +41,7 @@ public class StatHandler
         {
             Stat.Multiple(stat);
         }
+        ChangeEvent?.Invoke(Stat);
     }
     
 }
