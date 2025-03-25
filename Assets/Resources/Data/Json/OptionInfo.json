@@ -1,16 +1,16 @@
 {
 	"items" : [
 	{
-		"ID" : 101,
-		"Code" : "Equip_NormalSoward",
+		"ID" : 100110,
+		"Code" : "EQN_ATK_NORMALSWORD",
 		"OptionType" : 0,
 		"IsPercent" : false,
 		"Value" : 1,
 		"Time" : -1
 		},
 	{
-		"ID" : 201,
-		"Code" : "Equip_NormalShield",
+		"ID" : 102201,
+		"Code" : "EQN_BAR_NORMALSHIELD",
 		"OptionType" : 2,
 		"IsPercent" : false,
 		"Value" : 1,

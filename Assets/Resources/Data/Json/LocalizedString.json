@@ -1,0 +1,29 @@
+{
+	"items" : [
+	{
+		"ID" : 101100,
+		"Kor" : "기본 검",
+		"Eng" : "NormalSword"
+		},
+	{
+		"ID" : 102010,
+		"Kor" : "기본 방패",
+		"Eng" : "NormalShield"
+		},
+	{
+		"ID" : 101101,
+		"Kor" : "일반적인 검입니다",
+		"Eng" : "This is Normal Sword"
+		},
+	{
+		"ID" : 102011,
+		"Kor" : "일반적인 방패입니다",
+		"Eng" : "This is Normal Shield"
+		},
+	{
+		"ID" : 401000,
+		"Kor" : "검은기사",
+		"Eng" : "blackNight"
+		}
+	]
+}

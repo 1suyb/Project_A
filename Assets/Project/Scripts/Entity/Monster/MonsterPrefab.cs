@@ -32,15 +32,15 @@ public class MonsterPrefab : MonoBehaviour
 
 public class MonsterAttack : ICommand
 {
-    private MonsterAttackInfo _monsterAttackInfo;
+    //private MonsterAttackInfo _monsterAttackInfo;
     
     public MonsterAttack(int id)
     {
-        _monsterAttackInfo = InfoManager.Instance.Load<MonsterAttackInfo>(id);
+        //_monsterAttackInfo = InfoManager.Instance.Load<MonsterAttackInfo>(id);
     }
     public void Execute()
     {
-        Debug.Log(_monsterAttackInfo.Code);
+        //Debug.Log(_monsterAttackInfo.Code);
         Debug.Log($" 몬스터 공격!");
     }
 }

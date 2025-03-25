@@ -1,31 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentInfo : LoadedInfoBase
+public class SkillInfo : LoadedInfoBase
 {
      /// <summary>
      /// 코드
      /// </summary>
     public string Code;
      /// <summary>
-     /// 이름string code
+     /// 데미지 비율 백분율
      /// </summary>
-    public int NameID;
+    public int DamageRate;
      /// <summary>
-     /// 설명 string code
+     /// 타격 횟수
      /// </summary>
-    public int DescriptionID;
+    public int HitCount;
      /// <summary>
-     /// 레어도
+     /// 투사체 id
      /// </summary>
-    public RarityType Rarity;
+    public int ProjectileID;
      /// <summary>
-     /// 종류
+     /// 버프 id
      /// </summary>
-    public EquipType EquipType;
+    public List<int> BuffIDs;
      /// <summary>
-     /// 옵션Id들
+     /// 대상 타입
      /// </summary>
-    public List<int> OptionIDs;
+    public TargetType TargetType;
 }
 

@@ -1,0 +1,37 @@
+{
+	"items" : [
+	{
+		"ID" : 101,
+		"Code" : "BLACKNIGHT_1",
+		"DamageRate" : 100,
+		"HitCount" : 1,
+		"ProjectileID" : 0,
+		"BuffIDs" : [
+			0
+		],
+		"TargetType" : Enemy
+		},
+	{
+		"ID" : 102,
+		"Code" : "BLACKNIGHT_2",
+		"DamageRate" : 100,
+		"HitCount" : 1,
+		"ProjectileID" : 0,
+		"BuffIDs" : [
+			0
+		],
+		"TargetType" : Enemy
+		},
+	{
+		"ID" : 103,
+		"Code" : "BLACKNIGHT_3",
+		"DamageRate" : 100,
+		"HitCount" : 1,
+		"ProjectileID" : 0,
+		"BuffIDs" : [
+			0
+		],
+		"TargetType" : Enemy
+		}
+	]
+}

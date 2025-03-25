@@ -21,3 +21,9 @@ Weapon = 0,
 Shield = 1,
 }
 
+public enum TargetType
+{
+Enemy = 0,
+Self = 1,
+}
+

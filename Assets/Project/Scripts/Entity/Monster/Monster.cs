@@ -13,7 +13,7 @@ public class Monster : Entity, ILoadable
     
     public void Awake()
     {
-        Load(1);
+        Load(100);
     }
 
     public void Load(int id)

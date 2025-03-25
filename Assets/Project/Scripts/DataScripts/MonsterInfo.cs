@@ -4,9 +4,9 @@ using UnityEngine;
 public class MonsterInfo : LoadedInfoBase
 {
      /// <summary>
-     /// 코드
+     /// 이름ID
      /// </summary>
-    public string Code;
+    public int NameID;
      /// <summary>
      /// 체력
      /// </summary>
@@ -15,6 +15,10 @@ public class MonsterInfo : LoadedInfoBase
      /// 방어막
      /// </summary>
     public int Barrier;
+     /// <summary>
+     /// 공격력
+     /// </summary>
+    public int Attack;
      /// <summary>
      /// 최대 대기 시간
      /// </summary>

@@ -1,10 +1,11 @@
 {
 	"items" : [
 	{
-		"ID" : 1,
-		"Code" : "BLACKKNIGHT",
+		"ID" : 100,
+		"NameID" : 400100,
 		"HP" : 3,
 		"Barrier" : 0,
+		"Attack" : 1,
 		"MaxIdleTime" : 1,
 		"HasDefense" : true,
 		"AttackCount" : 3,

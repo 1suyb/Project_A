@@ -1,18 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterName : LoadedInfoBase
+public class LocalizedString : LoadedInfoBase
 {
      /// <summary>
-     /// 코드
-     /// </summary>
-    public string Code;
-     /// <summary>
-     /// 한국어이름
+     /// 한국어
      /// </summary>
     public string Kor;
      /// <summary>
-     /// 영어이름
+     /// 영어
      /// </summary>
     public string Eng;
 }
