@@ -15,6 +15,8 @@ public abstract class Status : MonoBehaviour
     {
         StatHandler = new StatHandler(BaseStat());
         ConditionHandler = new ConditionHandler(StatHandler.Stat);
+
+        StatHandler.ChangeEvent += ConditionHandler.SetMaxCondition;
     }
 
     protected abstract Stat BaseStat();
@@ -39,6 +41,10 @@ public abstract class Status : MonoBehaviour
             StatHandler.AddMultiplierModifier(modifier);
         }
     }
+    public void RemoveStatModifier(Stat modifier)
+    {
+        StatHandler.RemoveModifier(modifier);
+    }
     
     public void AddDieEvent(Action action)
     {
@@ -51,6 +57,11 @@ public abstract class Status : MonoBehaviour
     public void AddBarrierChangeEvent(Action<int> action)
     {
         ConditionHandler.Barrier.ChangeEvent += action;
+    }
+
+    public void AddChangeStatEvent(Action<Stat> action)
+    {
+        StatHandler.ChangeEvent += action;
     }
 
 }

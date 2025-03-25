@@ -792,6 +792,8 @@ GameObject:
   - component: {fileID: 1541473205}
   - component: {fileID: 1541473204}
   - component: {fileID: 1541473203}
+  - component: {fileID: 1541473207}
+  - component: {fileID: 1541473208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -858,6 +860,30 @@ Transform:
   - {fileID: 1699304731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1541473207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541473202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2689652f1e474086911bd500c130a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1541473208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541473202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ec56f580c645c6b129d06af9c5fb60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1699304728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,7 +1056,6 @@ GameObject:
   - component: {fileID: 8986432089158354393}
   - component: {fileID: 6580549701394002195}
   - component: {fileID: 8986432089158354394}
-  - component: {fileID: 8986432089158354395}
   m_Layer: 3
   m_Name: Axe1H_Basic
   m_TagString: Untagged
@@ -1229,18 +1254,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8986432089158354395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4634823482462163142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a1437307763dc4f999b0be762cfdb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

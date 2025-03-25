@@ -28,4 +28,10 @@ public class ConditionHandler
         Hp.Add(heal);
         Debug.Log("회복!");
     }
+
+    public void SetMaxCondition(Stat stat)
+    {
+        Hp.MaxCondition = stat.Hp;
+        Barrier.MaxCondition = stat.Barrier;
+    }
 }

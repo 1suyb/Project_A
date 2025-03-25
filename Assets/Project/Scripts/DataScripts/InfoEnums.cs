@@ -17,7 +17,7 @@ CriticalChance = 4,
 
 public enum EquipType
 {
-Sword = 0,
+Weapon = 0,
 Shield = 1,
 }
 

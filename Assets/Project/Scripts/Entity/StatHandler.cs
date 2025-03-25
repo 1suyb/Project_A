@@ -43,5 +43,17 @@ public class StatHandler
         }
         ChangeEvent?.Invoke(Stat);
     }
-    
+    public void RemoveModifier(Stat stat)
+    {
+        if (_addModifier.Contains(stat))
+        {
+            _addModifier.Remove(stat);
+            Modify();
+        }
+        else if (_multiplierModifier.Contains(stat))
+        {
+            _multiplierModifier.Remove(stat);
+            Modify();
+        }
+    }
 }

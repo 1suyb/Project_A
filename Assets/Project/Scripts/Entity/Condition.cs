@@ -60,7 +60,6 @@ public class Condition
     {
         ConditionValue -= value;
     }
-    
     public static Condition operator +(Condition condition, int value)
     {
         Condition result = new Condition(condition);

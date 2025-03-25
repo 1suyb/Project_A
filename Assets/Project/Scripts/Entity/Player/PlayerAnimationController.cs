@@ -27,14 +27,37 @@ public class PlayerAnimationController : MonoBehaviour
     }
     public void InitOnActivate()
     {
-        GetAnimator();
-
+        GetAnimator(null);
+        _player.OnEquipped += GetAnimator;
+        _player.OnUnequipped += ReleaseAnimator;
+    }
+    public void OnDisable()
+    {
+        EventHub.PlayerEventReceiver.OnEquip -= GetAnimator;
+        EventHub.PlayerEventReceiver.OnUnEquip -= ReleaseAnimator;
     }
 
-    public void GetAnimator()
+    private void GetAnimator(Equipment equipment)
     {
-        _rightAnim = _player.RightHand.GetComponentInChildren<Animator>();
-        _leftAnim = _player.LeftHand.GetComponentInChildren<Animator>();
+        if (equipment == null)
+            return;
+        
+        EquipType type = equipment.EquipmentInfo.EquipType;
+        if(type == EquipType.Weapon)
+            _rightAnim = _player.RightHand.GetComponentInChildren<Animator>();
+        else
+            _leftAnim = _player.LeftHand.GetComponentInChildren<Animator>();
+    }
+    private void ReleaseAnimator(Equipment equipment)
+    {
+        if (equipment == null)
+            return;
+            
+        EquipType type = equipment.EquipmentInfo.EquipType;
+        if(type == EquipType.Weapon)
+            _rightAnim = null;
+        else
+            _leftAnim = null;
     }
     
     private void HashSetUp()
