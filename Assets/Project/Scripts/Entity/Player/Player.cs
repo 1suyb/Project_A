@@ -41,8 +41,7 @@ public class Player : Entity, IHittable
     
     public void TakeDamage(AttackHandler attackHandler)
     {
-        Debug.Log("아야");
-        PlayerStatus.TakeDamage(attackHandler.CalcDamage(PlayerStatus.StatHandler.Stat));
+        PlayerStatus.TakeDamage(attackHandler.CalcDamage(PlayerStatus.Stat));
     }
     
     public void RaiseEquippedEvent(Equipment equipment)

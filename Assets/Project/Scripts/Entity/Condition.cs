@@ -56,10 +56,19 @@ public class Condition
             ConditionValue = Mathf.Min(MaxCondition, ConditionValue + value);
         }
     }
-    public void Sub(int value)
+    /// <summary>
+    /// ConditionValue에서 value만큼 뺀 값을 반환합니다.
+    /// 음수인경우 ConditionValue는 0으로 저장되지만, 음수도 반환합니다.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public int Sub(int value)
     {
+        int result = _conditionValue - value;
         ConditionValue -= value;
+        return result;
     }
+    
     public static Condition operator +(Condition condition, int value)
     {
         Condition result = new Condition(condition);
@@ -71,5 +80,14 @@ public class Condition
         Condition result = new Condition(condition);
         result.ConditionValue -= value;
         return result;
+    }
+    public static bool operator >(Condition condition, int value)
+    {
+        return condition.ConditionValue > value;
+    }
+    
+    public static bool operator <(Condition condition, int value)
+    {
+        return condition.ConditionValue < value;
     }
 }

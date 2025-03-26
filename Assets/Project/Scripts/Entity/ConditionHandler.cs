@@ -15,13 +15,19 @@ public class ConditionHandler
     }
     public void TakeDamage(int damage)
     {
+        if (Barrier > 0)
+        {
+            damage = -Barrier.Sub(damage);
+        }
+        if(damage <= 0)
+        {
+            return;
+        }
         Hp.Sub(damage);
-        Debug.Log("쳐마즘!");
         if(Hp.IsDie)
         {
             DieEvent?.Invoke();
         }
-        Debug.Log(Hp.ConditionValue);
     }
 
     public void Heal(int heal, bool isOverHeal = false)

@@ -1,6 +1,7 @@
 public class GameManager : Singleton<GameManager>
 {
     public Player Player { get; private set; }
+    public Monster Monster;
     protected override void Awake()
     {
         base.Awake();

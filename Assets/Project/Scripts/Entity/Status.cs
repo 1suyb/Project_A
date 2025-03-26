@@ -6,6 +6,7 @@ public abstract class Status : MonoBehaviour
     public Entity Entity { get; protected set; }
     public StatHandler StatHandler { get; protected set; }
     public ConditionHandler ConditionHandler { get; protected set; }
+    public Stat Stat => StatHandler.Stat;
 
     public virtual void InitOnCreate(Entity entity)
     {

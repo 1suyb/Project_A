@@ -113,8 +113,10 @@ public class PlayerEquipment : MonoBehaviour
     {
         Weapon = equipment;
         WeaponObject = InstantiateModel(equipment, RightHand);
-        AddEquipmentComponent<Weapon>(WeaponObject.gameObject);
+        Weapon wp = AddEquipmentComponent<Weapon>(WeaponObject.gameObject);
+        wp.SetPlayer(Player);
     }
+    
     /// <summary>
     /// 방어구를 장착합니다.
     /// </summary>

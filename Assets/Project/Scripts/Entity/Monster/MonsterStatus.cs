@@ -4,7 +4,6 @@ using UnityEngine;
 public class MonsterStatus : Status
 {
     public Monster Monster { get; private set; }
-    public Stat Stat => StatHandler.Stat;
 
     public override void InitOnCreate(Entity entity)
     {

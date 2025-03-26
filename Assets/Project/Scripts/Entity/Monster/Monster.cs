@@ -44,8 +44,9 @@ public class Monster : Entity, ILoadable, IHittable
     
     public void TakeDamage(AttackHandler damage)
     {
-        //MonsterStatus.TakeDamage(damage);
-        // 쳐맞는 애니메이션
+        Debug.Log("아야아");
+        MonsterStatus.TakeDamage(damage.CalcDamage(MonsterStatus.Stat));
+        //쳐맞는 애니메이션
     }
     public void Heal(int heal, bool isOverHeal = false)
     {
