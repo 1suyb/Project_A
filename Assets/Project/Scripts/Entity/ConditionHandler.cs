@@ -21,6 +21,7 @@ public class ConditionHandler
         {
             DieEvent?.Invoke();
         }
+        Debug.Log(Hp.ConditionValue);
     }
 
     public void Heal(int heal, bool isOverHeal = false)

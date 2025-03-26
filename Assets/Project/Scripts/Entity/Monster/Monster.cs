@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Monster : Entity, ILoadable
+public class Monster : Entity, ILoadable, IHittable
 {
     private MonsterInfo _monsterInfo;
     public MonsterInfo MonsterInfo => _monsterInfo;
@@ -42,9 +42,9 @@ public class Monster : Entity, ILoadable
         MonsterPrefab.InitOnActivate();
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(AttackHandler damage)
     {
-        MonsterStatus.TakeDamage(damage);
+        //MonsterStatus.TakeDamage(damage);
         // 쳐맞는 애니메이션
     }
     public void Heal(int heal, bool isOverHeal = false)

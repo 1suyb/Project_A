@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player : Entity
+public class Player : Entity, IHittable
 {
     [field: SerializeField] public Transform RightHand { get; private set; }
     [field: SerializeField] public Transform LeftHand { get; private set; }
@@ -16,7 +16,7 @@ public class Player : Entity
 
     private void Awake()
     {
-        InitOnCreate();
+        //InitOnCreate();
     }
 
     public void InitOnCreate()
@@ -32,16 +32,17 @@ public class Player : Entity
         PlayerEquipment.InitOnCreate(this);
     }
 
-    private void Start()
-    {
-        InitOnActivate();
-    }
-
     public void InitOnActivate()
     {
         PlayerAnimController.InitOnActivate();
         PlayerStatus.InitOnActivate();
         PlayerEquipment.InitOnActivate();
+    }
+    
+    public void TakeDamage(AttackHandler attackHandler)
+    {
+        Debug.Log("아야");
+        PlayerStatus.TakeDamage(attackHandler.CalcDamage(PlayerStatus.StatHandler.Stat));
     }
     
     public void RaiseEquippedEvent(Equipment equipment)

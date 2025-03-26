@@ -4,6 +4,7 @@ using UnityEngine;
 public class MonsterStatus : Status
 {
     public Monster Monster { get; private set; }
+    public Stat Stat => StatHandler.Stat;
 
     public override void InitOnCreate(Entity entity)
     {
@@ -32,6 +33,7 @@ public class MonsterStatus : Status
         return new StatBuilder()
             .Hp(info.HP)
             .Barrier(info.Barrier)
+            .Attack(info.Attack)
             .Build();
     }
 }

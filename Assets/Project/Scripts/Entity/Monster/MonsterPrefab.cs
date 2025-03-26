@@ -7,7 +7,8 @@ public class MonsterPrefab : MonoBehaviour
     private Monster _monster;
     private MonsterAI _monsterAI => _monster.MonsterAI;
     private MonsterInfo _monsterInfo => _monster.MonsterInfo;
-    private MonsterAttack[] _monsterAttacks;
+    private Stat Stat => _monster.MonsterStatus.Stat;
+    private Skill[] _skills;
     public void InitOnCreate(Monster monster)
     {
         _monster = monster;
@@ -15,32 +16,17 @@ public class MonsterPrefab : MonoBehaviour
 
     public void InitOnActivate()
     {
-        _monsterAttacks = new MonsterAttack[_monsterInfo.AttackCount];
         List<int> monsterAttackIDs = _monsterInfo.AttackIDs;
+        _skills = new Skill[_monsterInfo.AttackCount];
         
         for (int i = 0; i < _monsterInfo.AttackCount; i++)
         {
-            _monsterAttacks[i] = new MonsterAttack(monsterAttackIDs[i]);
+            _skills[i] = new Skill(monsterAttackIDs[i], Stat);
         }
     }
     
     public void Attack()
     {
-        _monsterAttacks[_monsterAI.AttackType].Execute();
-    }
-}
-
-public class MonsterAttack : ICommand
-{
-    //private MonsterAttackInfo _monsterAttackInfo;
-    
-    public MonsterAttack(int id)
-    {
-        //_monsterAttackInfo = InfoManager.Instance.Load<MonsterAttackInfo>(id);
-    }
-    public void Execute()
-    {
-        //Debug.Log(_monsterAttackInfo.Code);
-        Debug.Log($" 몬스터 공격!");
+        _skills[_monsterAI.AttackType].Execute(GameManager.Instance.Player);
     }
 }

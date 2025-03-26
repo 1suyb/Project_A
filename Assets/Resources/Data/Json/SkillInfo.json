@@ -9,7 +9,7 @@
 		"BuffIDs" : [
 			0
 		],
-		"TargetType" : Enemy
+		"TargetType" : 0
 		},
 	{
 		"ID" : 102,
@@ -20,7 +20,7 @@
 		"BuffIDs" : [
 			0
 		],
-		"TargetType" : Enemy
+		"TargetType" : 0
 		},
 	{
 		"ID" : 103,
@@ -31,7 +31,7 @@
 		"BuffIDs" : [
 			0
 		],
-		"TargetType" : Enemy
+		"TargetType" : 0
 		}
 	]
 }
