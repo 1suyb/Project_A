@@ -2,24 +2,22 @@
 	"items" : [
 	{
 		"ID" : 101,
-		"Code" : "WP_NORMALSWORD",
 		"NameID" : 101010,
 		"DescriptionID" : 101011,
 		"Rarity" : 0,
 		"EquipType" : 0,
 		"OptionIDs" : [
-			101
+			101101
 		]
 		},
 	{
 		"ID" : 201,
-		"Code" : "SD_NORMALSHIELD",
 		"NameID" : 102010,
 		"DescriptionID" : 102011,
 		"Rarity" : 0,
 		"EquipType" : 1,
 		"OptionIDs" : [
-			201
+			102201
 		]
 		}
 	]

@@ -4,10 +4,6 @@ using UnityEngine;
 public class EquipmentInfo : LoadedInfoBase
 {
      /// <summary>
-     /// 코드
-     /// </summary>
-    public string Code;
-     /// <summary>
      /// 이름string code
      /// </summary>
     public int NameID;

@@ -2,7 +2,7 @@
 	"items" : [
 	{
 		"ID" : 100,
-		"NameID" : 400100,
+		"NameID" : 401000,
 		"HP" : 3,
 		"Barrier" : 0,
 		"Attack" : 1,

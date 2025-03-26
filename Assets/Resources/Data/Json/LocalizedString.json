@@ -1,7 +1,7 @@
 {
 	"items" : [
 	{
-		"ID" : 101100,
+		"ID" : 101010,
 		"Kor" : "기본 검",
 		"Eng" : "NormalSword"
 		},
@@ -11,7 +11,7 @@
 		"Eng" : "NormalShield"
 		},
 	{
-		"ID" : 101101,
+		"ID" : 101011,
 		"Kor" : "일반적인 검입니다",
 		"Eng" : "This is Normal Sword"
 		},
