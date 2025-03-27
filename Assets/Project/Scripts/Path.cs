@@ -12,4 +12,8 @@ public static class Path
         public static string InputEventReceiver = "ScriptableObjects/Events/InputEventReceiver";
         public static string PlayerEventReceiver = "ScriptableObjects/Events/PlayerEventReceiver";
     }
+    public static Dictionary<UIType,string> UI = new Dictionary<UIType, string>
+    {
+        {UIType.HUD, "Prefabs/UI/HUD/"},
+    };
 }

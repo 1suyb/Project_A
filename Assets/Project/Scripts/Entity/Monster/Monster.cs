@@ -1,10 +1,11 @@
+using System;
+using System.ComponentModel;
 using UnityEngine;
+
 
 public class Monster : Entity, ILoadable, IHittable
 {
-    private MonsterInfo _monsterInfo;
-    public MonsterInfo MonsterInfo => _monsterInfo;
-    
+    public MonsterInfo MonsterInfo { get; private set; }
     public MonsterAnimationController MonsterAnimController { get; private set; }
     public MonsterAI MonsterAI { get; private set; }
     public MonsterPrefab MonsterPrefab { get; private set; }
@@ -18,14 +19,18 @@ public class Monster : Entity, ILoadable, IHittable
 
     public void Load(int id)
     {
-        _monsterInfo = InfoManager.Instance.Load<MonsterInfo>(id);
+        MonsterInfo = InfoManager.Instance.Load<MonsterInfo>(id);
         GameObject prefab = ResourceLoader.Instantiate(Path.Monster(id), this.transform);
+        
+        MonsterPrefab = prefab.GetComponent<MonsterPrefab>();
+        InitOnCreate();
+    }
 
+    public void InitOnCreate()
+    {
         MonsterAnimController = GetComponent<MonsterAnimationController>();
         MonsterAI = GetComponent<MonsterAI>();
         MonsterStatus = GetComponent<MonsterStatus>();
-        MonsterPrefab = prefab.GetComponent<MonsterPrefab>();
-        
         
         MonsterAnimController.InitOnCreate();
         MonsterAI.InitOnCreate(this);
@@ -41,6 +46,19 @@ public class Monster : Entity, ILoadable, IHittable
         MonsterStatus.InitOnActivate();
         MonsterPrefab.InitOnActivate();
     }
+
+    public void OnDisable()
+    {
+        Release();
+    }
+
+    public void Release()
+    {
+        MonsterAnimController.Release();
+        MonsterAI.Release();
+        MonsterStatus.Release();
+        MonsterPrefab.Release();
+    }
     
     public void TakeDamage(AttackHandler damage)
     {
@@ -51,7 +69,49 @@ public class Monster : Entity, ILoadable, IHittable
     public void Heal(int heal, bool isOverHeal = false)
     {
         MonsterStatus.Heal(heal, isOverHeal);
-        
+    }
+
+    #region AddEvent
+
+    public void AddDieEvent(Action action)
+    {
+        MonsterStatus.AddDieEvent(action);
+    }
+    public void AddChangeHpEvent(Action<int,int> action)
+    {
+        MonsterStatus.AddHpChangeEvent(action);
+    }
+    public void AddChangeBarrierEvent(Action<int,int> action)
+    {
+        MonsterStatus.AddBarrierChangeEvent(action);
+    }
+    public void AddChangeStatEvent(Action<Stat> action)
+    {
+        MonsterStatus.AddChangeStatEvent(action);
+    }
+
+    #endregion
+    #region RemoveEvent
+    public void RemoveDieEvent(Action action)
+    {
+        MonsterStatus.RemoveDieEvent(action);
+    }
+    public void RemoveChangeHpEvent(Action<int,int> action)
+    {
+        MonsterStatus.RemoveChangeHpEvent(action);
+    }
+    public void RemoveChangeBarrierEvent(Action<int,int> action)
+    {
+        MonsterStatus.RemoveChangeBarrierEvent(action);
+    }
+    public void RemoveChangeStatEvent(Action<Stat> action)
+    {
+        MonsterStatus.RemoveChangeStatEvent(action);
     }
     
+
+    #endregion
+
+
+
 }

@@ -29,7 +29,12 @@ public class MonsterAI : MonoBehaviour
     {
         ChangeState(IdleState);
     }
-    
+
+    public void Release()
+    {
+        _currentState = null;
+    }
+
     public void ChangeState(IState newState)
     {
         if(_currentState == newState) return;

@@ -23,13 +23,13 @@ public class Condition
         set
         {
             _conditionValue = value > 0 ? value : 0;
-            ChangeEvent?.Invoke(_conditionValue);
+            ChangeEvent?.Invoke(_conditionValue,MaxCondition);
         }
     }
     
     public bool IsDie => ConditionValue <= 0;
 
-    public Action<int> ChangeEvent;
+    public Action<int,int> ChangeEvent;
     
     public Condition(){}
 

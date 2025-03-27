@@ -14,10 +14,17 @@ public abstract class Status : MonoBehaviour
     }
     public virtual void InitOnActivate()
     {
-        StatHandler = new StatHandler(BaseStat());
-        ConditionHandler = new ConditionHandler(StatHandler.Stat);
+        if(StatHandler == null)
+            StatHandler = new StatHandler(BaseStat());
+        if(ConditionHandler == null)
+            ConditionHandler= new ConditionHandler(StatHandler.Stat);
 
         StatHandler.ChangeEvent += ConditionHandler.SetMaxCondition;
+    }
+
+    public virtual void Release()
+    {
+        StatHandler.ChangeEvent -= ConditionHandler.SetMaxCondition;
     }
 
     protected abstract Stat BaseStat();
@@ -51,18 +58,34 @@ public abstract class Status : MonoBehaviour
     {
         ConditionHandler.DieEvent += action;
     }
-    public void AddHpChangeEvent(Action<int> action)
+    public void AddHpChangeEvent(Action<int,int> action)
     {
         ConditionHandler.Hp.ChangeEvent += action;
     }
-    public void AddBarrierChangeEvent(Action<int> action)
+    public void AddBarrierChangeEvent(Action<int,int> action)
     {
         ConditionHandler.Barrier.ChangeEvent += action;
     }
-
     public void AddChangeStatEvent(Action<Stat> action)
     {
         StatHandler.ChangeEvent += action;
     }
+    
 
+    public void RemoveDieEvent(Action action)
+    {
+        ConditionHandler.DieEvent -= action;
+    }
+    public void RemoveChangeHpEvent(Action<int,int> action)
+    {
+        ConditionHandler.Hp.ChangeEvent -= action;
+    }
+    public void RemoveChangeBarrierEvent(Action<int,int> action)
+    {
+        ConditionHandler.Barrier.ChangeEvent -= action;
+    }
+    public void RemoveChangeStatEvent(Action<Stat> action)
+    {
+        StatHandler.ChangeEvent -= action;
+    }
 }

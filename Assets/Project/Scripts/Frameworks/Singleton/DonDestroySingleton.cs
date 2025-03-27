@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Singleton<T>
+public class DonDestroySingleton<T> : MonoBehaviour where T : DonDestroySingleton<T>
 {
     private static T instance;
     public static T Instance
@@ -24,6 +24,14 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
     protected virtual void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this as T;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

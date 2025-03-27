@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class InfoManager : Singleton<InfoManager>
+public class InfoManager : DonDestroySingleton<InfoManager>
 {
     private Dictionary<Type, object> _infoLoaders = new Dictionary<Type, object>();
 

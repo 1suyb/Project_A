@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,16 +24,22 @@ public class MonsterAnimationController : MonoBehaviour
     private int _hitHash;
     private int _dieHash;
     
-    private Dictionary<int, StateBehaviour> _stateBehaviours = new Dictionary<int, StateBehaviour>();
+    private Dictionary<int, StateBehaviour> _stateBehaviours;
     
     public void InitOnCreate()
     {
         HashSetUp();
+        _stateBehaviours = new Dictionary<int, StateBehaviour>();
         _animator = GetComponentInChildren<Animator>();
     }
 
-    public void Disable()
+    public void InitOnActivate()
     {
+    }
+
+    public void Release()
+    {
+        _stateBehaviours.Clear();
         AnimEventReset();
     }
 
