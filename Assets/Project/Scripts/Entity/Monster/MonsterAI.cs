@@ -28,11 +28,18 @@ public class MonsterAI : MonoBehaviour
     public void InitOnActivate()
     {
         ChangeState(IdleState);
+        Monster.AddDieEvent(Die);
+    }
+
+    private void Die()
+    {
+        ChangeState(DieState);
     }
 
     public void Release()
     {
         _currentState = null;
+        //Monster.RemoveDieEvent(Die);
     }
 
     public void ChangeState(IState newState)

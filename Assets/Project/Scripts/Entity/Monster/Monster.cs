@@ -10,6 +10,8 @@ public class Monster : Entity, ILoadable, IHittable
     public MonsterPrefab MonsterPrefab { get; private set; }
 
     public MonsterStatus MonsterStatus { get; private set; }
+
+    public event Action OnDisabled;
     
     /*public void Awake()
     {
@@ -39,12 +41,13 @@ public class Monster : Entity, ILoadable, IHittable
 
     public void InitOnActivate()
     { 
-        MonsterAI.InitOnActivate();
         MonsterStatus.InitOnActivate();
+        MonsterAI.InitOnActivate();
         MonsterPrefab.InitOnActivate();
         
         // TODO : UI Test Code. 나중에 다른데로 옮기기
         UIManager.HUD.MonsterConditionHUD.RegisterMonster(this);
+        MonsterAnimController.AddAnimEndEvent<DieStateBehaviour>(()=>{this.gameObject.SetActive(false);});
     }
 
     public void OnDisable()
@@ -58,6 +61,8 @@ public class Monster : Entity, ILoadable, IHittable
         MonsterAI.Release();
         MonsterStatus.Release();
         MonsterPrefab.Release();
+        OnDisabled?.Invoke();
+        OnDisabled = null;
     }
     
     public void TakeDamage(AttackHandler damage)
@@ -88,6 +93,11 @@ public class Monster : Entity, ILoadable, IHittable
     public void AddChangeStatEvent(Action<Stat> action)
     {
         MonsterStatus.AddChangeStatEvent(action);
+    }
+
+    public void AddDisableEvent(Action action)
+    {
+        OnDisabled += action;
     }
 
     #endregion

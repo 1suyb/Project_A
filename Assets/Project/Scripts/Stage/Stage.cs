@@ -2,20 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageData
-{
-    public StageInfo StageInfo;
-    public List<RoundData> Rounds = new List<RoundData>();
-    
-    public StageData(StageInfo stageInfo)
-    {
-        StageInfo = stageInfo;
-        Rounds.Add(new RoundData(RoundType.Monster, 100, 100));
-    }
-    
-    
-}
-
 public class Stage : MonoBehaviour
 {
     
@@ -81,7 +67,7 @@ public class Stage : MonoBehaviour
 
     private void StageClear()
     {
-        
+        Debug.Log("Stage Clear");
     }
     public void SpawnMonster(RoundData roundData)
     {
@@ -89,6 +75,7 @@ public class Stage : MonoBehaviour
         Monster monster = obj.GetComponent<Monster>();
         monster.Load(roundData.Value);
         monster.InitOnActivate();
+        monster.AddDisableEvent(StageClear);
         GameManager.Instance.Monster = monster;
     }
     public void SpawnEvent(RoundData roundData)
