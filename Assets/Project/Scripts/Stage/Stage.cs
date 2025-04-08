@@ -8,9 +8,9 @@ public class Stage : MonoBehaviour
     public List<RoundData> Rounds = new List<RoundData>()
     {
         new RoundData(RoundType.Monster, 100, 100),
-        new RoundData(RoundType.Recovery, 50, 10),
-        new RoundData(RoundType.Damage, 50, 10),
-        new RoundData(RoundType.Boss, 200, 100),
+        new RoundData(RoundType.Recovery, 50, 10)
+        /*new RoundData(RoundType.Damage, 50, 10),
+        new RoundData(RoundType.Boss, 200, 100),*/
     };
 
     public int CurrentRoundIndex { get; private set; }
@@ -44,7 +44,7 @@ public class Stage : MonoBehaviour
                 Debug.Log("Spawn Boss");
                 break;
             case RoundType.Recovery:
-                Debug.Log("Spawn Recovery Event");
+                SpawnEvent(roundData);
                 break;
             case RoundType.Damage:
                 Debug.Log("Spawn Damage Event");
@@ -62,7 +62,16 @@ public class Stage : MonoBehaviour
 
     private void RoundClear()
     {
-        
+        Debug.Log("Round Clear");
+        if(Rounds.Count > CurrentRoundIndex + 1)
+        {
+            CurrentRoundIndex++;
+            SpawnRound(CurrentRoundIndex);
+        }
+        else
+        {
+            StageClear();
+        }
     }
 
     private void StageClear()
@@ -75,12 +84,15 @@ public class Stage : MonoBehaviour
         Monster monster = obj.GetComponent<Monster>();
         monster.Load(roundData.Value);
         monster.InitOnActivate();
-        monster.AddDisableEvent(StageClear);
+        monster.AddDisableEvent(RoundClear);
         GameManager.Instance.Monster = monster;
     }
     public void SpawnEvent(RoundData roundData)
     {
         // TODO : 이벤트 스폰
-        
+        GameObject obj = ResourceLoader.Instantiate(Path.Base.Event, this.transform);
+        RoundEvent round = obj.GetComponent<RoundEvent>();
+        round.InitOnCreate(roundData);
+        round.InitOnActivate();
     }
 }

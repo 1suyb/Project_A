@@ -10,6 +10,7 @@ public static class Path
     public class Base
     {
         public static string Monster = "Prefabs/Stage/Monster";
+        public static string Event = "Prefabs/Stage/Event";
     }
     
     public class SO

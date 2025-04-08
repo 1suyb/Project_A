@@ -41,6 +41,7 @@ public class Monster : Entity, ILoadable, IHittable
 
     public void InitOnActivate()
     { 
+        // TODO : 몬스터 AI에서 Status의 Die를 참조해야해서 Status와 AI 순서간의 의존성 문제 발생
         MonsterStatus.InitOnActivate();
         MonsterAI.InitOnActivate();
         MonsterPrefab.InitOnActivate();
