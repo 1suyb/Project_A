@@ -24,6 +24,21 @@
 		"ID" : 401000,
 		"Kor" : "검은기사",
 		"Eng" : "blackNight"
+		},
+	{
+		"ID" : 501010,
+		"Kor" : "1스테이지",
+		"Eng" : "1Stage"
+		},
+	{
+		"ID" : 601000,
+		"Kor" : "회복이벤트",
+		"Eng" : "RecoveryEvent"
+		},
+	{
+		"ID" : 601001,
+		"Kor" : "회복할 수 있습니다",
+		"Eng" : "You can recovery Hp"
 		}
 	]
 }

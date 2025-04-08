@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +6,15 @@ public class ConditionHUD : HUD
     [SerializeField] private Image _hpFill;
     [SerializeField] private Image _barrierFill;
     
-    public void SetHPFill(int current, int max)
+    public void SetHPFill(ConditionChangeArgs args)
     {
-        _barrierFill.fillAmount = CalcRate(current, max);
+        if(args.IsHp)
+            _hpFill.fillAmount = CalcRate(args.CurrentValue, args.MaxValue);
     }
-    public void SetBarrierFill(int current, int max)
+    public void SetBarrierFill(ConditionChangeArgs args)
     {
-        _barrierFill.fillAmount = CalcRate(current, max);
+        if(!args.IsHp)
+            _barrierFill.fillAmount = CalcRate(args.CurrentValue, args.MaxValue);
     }
     private float CalcRate(int current, int max) => (float)current / max;
 }

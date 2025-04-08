@@ -13,13 +13,14 @@ public class MonsterConditonHUD : HUD
     /// <param name="monster"></param>
     public void RegisterMonster(Monster monster)
     {
+        _monster = monster;
         monster.AddChangeBarrierEvent(_monsterConditon.SetBarrierFill);
         monster.AddChangeHpEvent(_monsterConditon.SetHPFill);
         monster.AddDieEvent(UnRegisterMonster);
         
         int monsterNameID = monster.MonsterInfo.NameID;
         // Todo : Load monster name from StringManager 
-        _monsterName.text = InfoManager.Instance.Load<LocalizedString>(monsterNameID).Kor;
+        _monsterName.text = InfoManager.Instance.Load<LocalizedString>(monsterNameID).Eng;
     }
     /// <summary>
     /// 몬스터의 정보를 HUD에서 제거합니다.

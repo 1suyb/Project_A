@@ -58,11 +58,11 @@ public abstract class Status : MonoBehaviour
     {
         ConditionHandler.DieEvent += action;
     }
-    public void AddHpChangeEvent(Action<int,int> action)
+    public void AddHpChangeEvent(Action<ConditionChangeArgs> action)
     {
         ConditionHandler.Hp.ChangeEvent += action;
     }
-    public void AddBarrierChangeEvent(Action<int,int> action)
+    public void AddBarrierChangeEvent(Action<ConditionChangeArgs> action)
     {
         ConditionHandler.Barrier.ChangeEvent += action;
     }
@@ -76,11 +76,11 @@ public abstract class Status : MonoBehaviour
     {
         ConditionHandler.DieEvent -= action;
     }
-    public void RemoveChangeHpEvent(Action<int,int> action)
+    public void RemoveHpChangeEvent(Action<ConditionChangeArgs> action)
     {
         ConditionHandler.Hp.ChangeEvent -= action;
     }
-    public void RemoveChangeBarrierEvent(Action<int,int> action)
+    public void RemoveBarrierChangeEvent(Action<ConditionChangeArgs> action)
     {
         ConditionHandler.Barrier.ChangeEvent -= action;
     }

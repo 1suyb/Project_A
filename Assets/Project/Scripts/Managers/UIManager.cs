@@ -4,9 +4,24 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    public HUDManager HUD { get; private set; }
-    public PopupManager Popup { get; private set; }
-    public WindowManager Window { get; private set; }
-    public FloatingManager Floating { get; private set; }
-    
+    public static HUDManager HUD => Instance._hudManager;
+    public static PopupManager Popup => Instance._popupManager;
+    public static WindowManager Window => Instance._windowManager;
+    public static FloatingManager Floating => Instance._floatingManager;
+
+    private HUDManager _hudManager;
+    private PopupManager _popupManager;
+    private WindowManager _windowManager;
+    private FloatingManager _floatingManager;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _hudManager = GetComponentInChildren<HUDManager>();
+        _hudManager.Init();
+        _popupManager = GetComponentInChildren<PopupManager>();
+        _windowManager = GetComponentInChildren<WindowManager>();
+        _floatingManager = GetComponentInChildren<FloatingManager>();
+    }
+
 }

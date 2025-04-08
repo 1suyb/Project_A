@@ -10,8 +10,8 @@ public class ConditionHandler
     
     public ConditionHandler(Stat stat)
     {
-        Hp = new Condition(stat.Hp);
-        Barrier = new Condition(stat.Barrier);
+        Hp = new Condition(stat.Hp, true);
+        Barrier = new Condition(stat.Barrier, false);
     }
     public void TakeDamage(int damage)
     {

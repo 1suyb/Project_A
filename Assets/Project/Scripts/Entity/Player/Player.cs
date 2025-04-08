@@ -37,6 +37,9 @@ public class Player : Entity, IHittable
         PlayerAnimController.InitOnActivate();
         PlayerStatus.InitOnActivate();
         PlayerEquipment.InitOnActivate();
+        
+        // TODO : UI Test Code. 나중에 다른데로 옮기기
+        UIManager.HUD.PlayerConditionHUD.RegisterEvent();
     }
     
     public void TakeDamage(AttackHandler attackHandler)

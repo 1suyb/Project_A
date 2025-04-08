@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using UnityEngine;
 
 
@@ -12,10 +11,10 @@ public class Monster : Entity, ILoadable, IHittable
 
     public MonsterStatus MonsterStatus { get; private set; }
     
-    public void Awake()
+    /*public void Awake()
     {
         Load(100);
-    }
+    }*/
 
     public void Load(int id)
     {
@@ -36,8 +35,6 @@ public class Monster : Entity, ILoadable, IHittable
         MonsterAI.InitOnCreate(this);
         MonsterStatus.InitOnCreate(this);
         MonsterPrefab.InitOnCreate(this);
-        
-        InitOnActivate();
     }
 
     public void InitOnActivate()
@@ -45,6 +42,9 @@ public class Monster : Entity, ILoadable, IHittable
         MonsterAI.InitOnActivate();
         MonsterStatus.InitOnActivate();
         MonsterPrefab.InitOnActivate();
+        
+        // TODO : UI Test Code. 나중에 다른데로 옮기기
+        UIManager.HUD.MonsterConditionHUD.RegisterMonster(this);
     }
 
     public void OnDisable()
@@ -77,11 +77,11 @@ public class Monster : Entity, ILoadable, IHittable
     {
         MonsterStatus.AddDieEvent(action);
     }
-    public void AddChangeHpEvent(Action<int,int> action)
+    public void AddChangeHpEvent(Action<ConditionChangeArgs> action)
     {
         MonsterStatus.AddHpChangeEvent(action);
     }
-    public void AddChangeBarrierEvent(Action<int,int> action)
+    public void AddChangeBarrierEvent(Action<ConditionChangeArgs> action)
     {
         MonsterStatus.AddBarrierChangeEvent(action);
     }
@@ -96,13 +96,13 @@ public class Monster : Entity, ILoadable, IHittable
     {
         MonsterStatus.RemoveDieEvent(action);
     }
-    public void RemoveChangeHpEvent(Action<int,int> action)
+    public void RemoveChangeHpEvent(Action<ConditionChangeArgs> action)
     {
-        MonsterStatus.RemoveChangeHpEvent(action);
+        MonsterStatus.RemoveHpChangeEvent(action);
     }
-    public void RemoveChangeBarrierEvent(Action<int,int> action)
+    public void RemoveChangeBarrierEvent(Action<ConditionChangeArgs> action)
     {
-        MonsterStatus.RemoveChangeBarrierEvent(action);
+        MonsterStatus.RemoveBarrierChangeEvent(action);
     }
     public void RemoveChangeStatEvent(Action<Stat> action)
     {

@@ -27,3 +27,13 @@ Enemy = 0,
 Self = 1,
 }
 
+public enum RoundType
+{
+Recovery = 0,
+Damage = 1,
+Buff = 2,
+RandomEffect = 3,
+Monster = 4,
+Boss = 5,
+}
+

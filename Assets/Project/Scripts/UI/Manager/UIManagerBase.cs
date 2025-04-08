@@ -24,17 +24,34 @@ public class UIManagerBase : MonoBehaviour
         return ui;
     }
     
-    public virtual T OpenUI<T>(UIType uiType) where T : UI
+    public virtual T OpenUI<T>(UIType uiType, bool isStack = false) where T : UI
     {
         T ui = GetUI<T>(uiType);
         ui.Open();
-        _uiStack.Push(ui);
+        if(isStack)
+            _uiStack.Push(ui);
+
+        return ui;
+    }
+    public virtual UI OpenUI(UI ui, bool isStack = false)
+    {
+        ui.Open();
+        if(isStack)
+            _uiStack.Push(ui);
+        
         return ui;
     }
     
     public virtual void CloseUI<T>(UIType uiType) where T : UI
     {
         T ui = GetUI<T>(uiType);
+        if(_uiStack.Peek()==ui)
+        {
+            CloseTopUI();
+        }
+    }
+    public virtual void CloseUI(UI ui)
+    {
         if(_uiStack.Peek()==ui)
         {
             CloseTopUI();
@@ -57,11 +74,6 @@ public class UIManagerBase : MonoBehaviour
             CloseTopUI();
         }
     }
-}
-
-public class PopupManager: UIManagerBase
-{
-    
 }
 
 public class WindowManager : UIManagerBase

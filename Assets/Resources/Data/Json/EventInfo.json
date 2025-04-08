@@ -1,0 +1,13 @@
+{
+	"items" : [
+	{
+		"ID" : 100,
+		"NameID" : 601000,
+		"DescriptionID" : 601001,
+		"EventType" : 0,
+		"BuffIDs" : [
+			
+		]
+		}
+	]
+}

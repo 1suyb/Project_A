@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StageData
+{
+    public StageInfo StageInfo;
+    public List<RoundData> Rounds = new List<RoundData>();
+    
+    public StageData(StageInfo stageInfo)
+    {
+        StageInfo = stageInfo;
+        Rounds.Add(new RoundData(RoundType.Monster, 100, 100));
+    }
+    
+    
+}
+
+public class Stage : MonoBehaviour
+{
+    
+    public List<RoundData> Rounds = new List<RoundData>()
+    {
+        new RoundData(RoundType.Monster, 100, 100),
+        new RoundData(RoundType.Recovery, 50, 10),
+        new RoundData(RoundType.Damage, 50, 10),
+        new RoundData(RoundType.Boss, 200, 100),
+    };
+
+    public int CurrentRoundIndex { get; private set; }
+
+    public void InitOnCreate()
+    {
+
+    }
+
+    public void Start()
+    {
+        InitOnActivate();
+    }
+
+    public void InitOnActivate()
+    {
+        // 라운드 구성
+        CurrentRoundIndex = 0;
+        SpawnRound(CurrentRoundIndex);
+    }
+
+    public void SpawnRound(int roundIndex)
+    {
+        RoundData roundData = Rounds[roundIndex];
+        switch (roundData.RoundType)
+        {
+            case RoundType.Monster:
+                SpawnMonster(roundData);
+                break;
+            case RoundType.Boss:
+                Debug.Log("Spawn Boss");
+                break;
+            case RoundType.Recovery:
+                Debug.Log("Spawn Recovery Event");
+                break;
+            case RoundType.Damage:
+                Debug.Log("Spawn Damage Event");
+                break;
+            case RoundType.RandomEffect:
+                Debug.Log("Spawn Buff Event");
+                break;
+        }
+    }
+
+    private void GameOver()
+    {
+        
+    }
+
+    private void RoundClear()
+    {
+        
+    }
+
+    private void StageClear()
+    {
+        
+    }
+    public void SpawnMonster(RoundData roundData)
+    {
+        GameObject obj = ResourceLoader.Instantiate(Path.Base.Monster, this.transform);
+        Monster monster = obj.GetComponent<Monster>();
+        monster.Load(roundData.Value);
+        monster.InitOnActivate();
+        GameManager.Instance.Monster = monster;
+    }
+    public void SpawnEvent(RoundData roundData)
+    {
+        // TODO : 이벤트 스폰
+        
+    }
+}

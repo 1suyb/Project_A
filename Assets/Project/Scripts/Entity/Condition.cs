@@ -23,18 +23,20 @@ public class Condition
         set
         {
             _conditionValue = value > 0 ? value : 0;
-            ChangeEvent?.Invoke(_conditionValue,MaxCondition);
+            ChangeEvent?.Invoke(new ConditionChangeArgs(MaxCondition, _conditionValue, _isHp));
         }
     }
-    
-    public bool IsDie => ConditionValue <= 0;
 
-    public Action<int,int> ChangeEvent;
+    private bool _isHp;
+    public bool IsDie => ConditionValue <= 0;
+    
+    public Action<ConditionChangeArgs> ChangeEvent;
     
     public Condition(){}
 
-    public Condition(int maxCondition)
+    public Condition(int maxCondition, bool isHp = true)
     {
+        _isHp = isHp;
         MaxCondition = maxCondition;
         ConditionValue = maxCondition;
     }

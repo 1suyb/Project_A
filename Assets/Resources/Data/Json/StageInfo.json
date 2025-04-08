@@ -1,0 +1,17 @@
+{
+	"items" : [
+	{
+		"ID" : 101,
+		"NameID" : 501010,
+		"MonsterIDs" : [
+			100
+		],
+		"EventIDs" : [
+			100
+		],
+		"BossID" : 100,
+		"MonsterCount" : 1,
+		"EventCount" : 1
+		}
+	]
+}
