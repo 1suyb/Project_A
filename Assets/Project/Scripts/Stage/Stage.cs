@@ -92,6 +92,7 @@ public class Stage : MonoBehaviour
         // TODO : 이벤트 스폰
         GameObject obj = ResourceLoader.Instantiate(Path.Base.Event, this.transform);
         RoundEvent round = obj.GetComponent<RoundEvent>();
+        round.OnEventEnd += RoundClear;
         round.InitOnCreate(roundData);
         round.InitOnActivate();
     }

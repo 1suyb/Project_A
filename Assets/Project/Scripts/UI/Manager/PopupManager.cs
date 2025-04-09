@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class PopupManager: UIManagerBase
 {
@@ -8,11 +9,12 @@ public class PopupManager: UIManagerBase
         confirmPopup.SetPopup(message, onConfirm);
         OpenUI(confirmPopup);
     }
-    public void EventConfirm(string title, string message, Action onConfirm)
+    public void EventConfirm(string title, string message, Action onConfirm, Action onClose = null)
     {
         ConfirmPopup confirmPopup = GetUI<ConfirmPopup>(UIType.EventConfirmPopup);
-        confirmPopup.SetPopup(title, message, onConfirm);
+        confirmPopup.SetPopup(title, message, onConfirm, onClose);
         OpenUI(confirmPopup);
+        Debug.Log("이벤트 팝업 오픈");
     }
 
     /// <summary>

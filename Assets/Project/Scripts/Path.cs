@@ -21,5 +21,6 @@ public static class Path
     public static Dictionary<UIType,string> UI = new Dictionary<UIType, string>
     {
         {UIType.HUD, "Prefabs/UI/HUD/"},
+        { UIType.EventConfirmPopup ,"Prefabs/UI/Popup/EventConfirmPopup"},
     };
 }

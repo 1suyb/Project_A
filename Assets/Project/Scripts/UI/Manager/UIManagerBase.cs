@@ -16,7 +16,7 @@ public class UIManagerBase : MonoBehaviour
         }
         else
         {
-            ui = ResourceLoader.Load<T>(Path.UI[uiType]);
+            ui = ResourceLoader.Instantiate(Path.UI[uiType],this.transform).GetComponent<T>();
             _uiDict.Add(uiType, ui);
             ui.gameObject.SetActive(false);
         }
@@ -42,19 +42,33 @@ public class UIManagerBase : MonoBehaviour
         return ui;
     }
     
-    public virtual void CloseUI<T>(UIType uiType) where T : UI
+    public virtual void CloseUI<T>(UIType uiType, bool isStack = false) where T : UI
     {
         T ui = GetUI<T>(uiType);
-        if(_uiStack.Peek()==ui)
+        if (isStack)
         {
-            CloseTopUI();
+            if(_uiStack.Peek()==ui)
+            {
+                CloseTopUI();
+            }
+        }
+        else
+        {
+            ui.Close();
         }
     }
-    public virtual void CloseUI(UI ui)
+    public virtual void CloseUI(UI ui, bool isStack = false)
     {
-        if(_uiStack.Peek()==ui)
+        if (isStack)
         {
-            CloseTopUI();
+            if(_uiStack.Peek()==ui)
+            {
+                CloseTopUI();
+            }
+        }
+        else
+        {
+            ui.Close();
         }
     }
     
