@@ -13,6 +13,8 @@ public class MonsterAI : MonoBehaviour
     public MonsterVictoryState VictoryState { get; private set; }
 
     public int AttackType => AttackState.AttackType;
+    public bool IsDamageable => _currentState is MonsterHitState;
+    public bool IsHittable => _currentState is MonsterIdleState || _currentState is MonsterDefenseState;
 
     public void InitOnCreate(Monster monster)
     {
@@ -29,11 +31,17 @@ public class MonsterAI : MonoBehaviour
     {
         ChangeState(IdleState);
         Monster.AddDieEvent(Die);
+        Monster.OnHit += Hit;
     }
 
     private void Die()
     {
         ChangeState(DieState);
+    }
+
+    private void Hit()
+    {
+        ChangeState(HitState);
     }
 
     public void Release()

@@ -20,7 +20,9 @@ public class RoundEvent : MonoBehaviour
 
     private void EventExcute()
     {
-        Debug.Log($"플레이어 {value}회복");
+        EventRouter.Publish(new HealEvent(value, false));
+        this.gameObject.SetActive(false);
+        OnEventEnd?.Invoke();
     }
     
 }

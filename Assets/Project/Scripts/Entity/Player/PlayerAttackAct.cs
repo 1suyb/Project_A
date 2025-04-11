@@ -11,11 +11,12 @@ public class PlayerAttackAct : IUndoCommand
     public void Execute()
     {
         _animController.Attack();
+        _playerController.PlayerState = PlayerState.Attack;
     }
 
     public void Undo()
     {
         _animController.StopAttack();
-
+        _playerController.PlayerState = PlayerState.Idle;
     }
 }

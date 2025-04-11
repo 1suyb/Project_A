@@ -17,6 +17,14 @@ public class PopupManager: UIManagerBase
         Debug.Log("이벤트 팝업 오픈");
     }
 
+    public void GameOver(Action onConfirm, Action onClose = null)
+    {
+        ConfirmPopup confirmPopup = GetUI<ConfirmPopup>(UIType.GameOverPopup);
+        confirmPopup.SetPopup("GameOver", onConfirm, onClose);
+        OpenUI(confirmPopup);
+        Debug.Log("게임오버 팝업 오픈");
+    }
+
     /// <summary>
     /// 확인이 필요한 팝업
     /// </summary>

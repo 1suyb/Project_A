@@ -11,11 +11,12 @@ public class PlayerDefenseAct : IUndoCommand
     public void Execute()
     {
         _animController.Defense();
+        _playerController.PlayerState = PlayerState.Defense;
     }
 
     public void Undo()
     {
         _animController.StopDefense();
-
+        _playerController.PlayerState = PlayerState.Idle;
     }
 }

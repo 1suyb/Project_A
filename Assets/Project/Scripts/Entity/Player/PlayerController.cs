@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputEventReceiver _inputEventReceiver;
-    
+    public PlayerState PlayerState;
     public Player Player { get; private set; }
     
     private PlayerAttackAct _attackAct;

@@ -48,7 +48,7 @@ public class MonsterIdleState : MonsterState
 
     private void RandomAct()
     {
-        int random = Random.Range(0, 100);
+        int random = Random.Range(0, 1000);
         if(_monsterInfo.IdleActionChance > random)
         {
            Act();

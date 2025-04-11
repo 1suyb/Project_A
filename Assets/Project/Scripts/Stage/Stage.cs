@@ -76,7 +76,7 @@ public class Stage : MonoBehaviour
 
     private void StageClear()
     {
-        Debug.Log("Stage Clear");
+        UIManager.Popup.GameOver(()=>{Debug.Log("스테이지 클리어!");});
     }
     public void SpawnMonster(RoundData roundData)
     {

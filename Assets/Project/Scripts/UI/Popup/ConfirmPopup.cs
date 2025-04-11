@@ -27,13 +27,20 @@ public class ConfirmPopup : UI
         });
     }
     
-    public void SetPopup(string message, Action onYes)
+    public void SetPopup(string message, Action onYes, Action onNo = null)
     {
         _message.text = message;
         _Ybutton.onClick.AddListener(() =>
         {
             onYes?.Invoke();
         });
+        if (onNo == null)
+        {
+            _Nbutton.onClick.AddListener(() =>
+            {
+                onNo?.Invoke();
+            });
+        }
     }
     public void SetPopup(string title, string message, Action onYes, Action onNo = null)
     {

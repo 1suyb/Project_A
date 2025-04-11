@@ -11,12 +11,11 @@ public class Monster : Entity, ILoadable, IHittable
 
     public MonsterStatus MonsterStatus { get; private set; }
 
+    public event Action OnHit;
     public event Action OnDisabled;
-    
-    /*public void Awake()
-    {
-        Load(100);
-    }*/
+
+    public bool IsDamageable => MonsterAI.IsDamageable;
+    public bool IsHittable => MonsterAI.IsHittable;
 
     public void Load(int id)
     {
@@ -68,9 +67,15 @@ public class Monster : Entity, ILoadable, IHittable
     
     public void TakeDamage(AttackHandler damage)
     {
-        Debug.Log("아야아");
-        MonsterStatus.TakeDamage(damage.CalcDamage(MonsterStatus.Stat));
-        //쳐맞는 애니메이션
+        if (IsHittable)
+        {
+            OnHit?.Invoke();
+        }
+        if (IsDamageable)
+        {
+            MonsterStatus.TakeDamage(damage.CalcDamage(MonsterStatus.Stat));
+        }
+        
     }
     public void Heal(int heal, bool isOverHeal = false)
     {

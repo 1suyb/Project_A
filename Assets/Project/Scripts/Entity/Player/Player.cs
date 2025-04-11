@@ -11,13 +11,10 @@ public class Player : Entity, IHittable
     public PlayerStatus PlayerStatus { get; private set; }
     public PlayerEquipment PlayerEquipment { get; private set; }
 
+    public PlayerState PlayerState=> PlayerController.PlayerState;
+    
     public event Action<Equipment> OnEquipped;
     public event Action<Equipment> OnUnequipped;
-
-    private void Awake()
-    {
-        //InitOnCreate();
-    }
 
     public void InitOnCreate()
     {
@@ -40,11 +37,22 @@ public class Player : Entity, IHittable
         
         // TODO : UI Test Code. 나중에 다른데로 옮기기
         UIManager.HUD.PlayerConditionHUD.RegisterEvent();
+        EventRouter.Subscribe<HealEvent>(Heal);
     }
     
     public void TakeDamage(AttackHandler attackHandler)
     {
+        if(PlayerState == PlayerState.Defense || 
+           PlayerState == PlayerState.Hit ||
+           PlayerState == PlayerState.Dead)
+            return;
         PlayerStatus.TakeDamage(attackHandler.CalcDamage(PlayerStatus.Stat));
+    }
+    public void Heal(HealEvent healEvent)
+    {
+        if (PlayerState == PlayerState.Dead)
+            return;
+        PlayerStatus.Heal(healEvent.value, healEvent.isOverHeal);
     }
     
     public void RaiseEquippedEvent(Equipment equipment)
