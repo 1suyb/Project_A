@@ -20,6 +20,26 @@
 		],
 		"IdleActionChance" : 5,
 		"DefenseChance" : 5
+		},
+	{
+		"ID" : 101,
+		"NameID" : 401010,
+		"HP" : 3,
+		"Barrier" : 0,
+		"Attack" : 1,
+		"MaxIdleTime" : 1,
+		"HasDefense" : false,
+		"AttackCount" : 2,
+		"AttackIDs" : [
+			101,
+			102
+		],
+		"MaxDefenseTime" : [
+			1,
+			2
+		],
+		"IdleActionChance" : 5,
+		"DefenseChance" : 5
 		}
 	]
 }

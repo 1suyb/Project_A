@@ -7,8 +7,9 @@ public class Stage : MonoBehaviour
     
     public List<RoundData> Rounds = new List<RoundData>()
     {
+        new RoundData(RoundType.Monster, 101, 101),
+        new RoundData(RoundType.Recovery, 50, 10),
         new RoundData(RoundType.Monster, 100, 100),
-        new RoundData(RoundType.Recovery, 50, 10)
         /*new RoundData(RoundType.Damage, 50, 10),
         new RoundData(RoundType.Boss, 200, 100),*/
     };
