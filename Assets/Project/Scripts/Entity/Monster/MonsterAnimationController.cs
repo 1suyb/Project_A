@@ -13,6 +13,9 @@ public class MonsterAnimationController : MonoBehaviour
     private readonly string _isAttack = "IsAttack";
     private readonly string _isDefense = "IsDefense";
     
+    private readonly string _isGroggy = "IsGroggy";
+    private readonly string _groggy = "Groggy";
+    
     private readonly string _hit = "Hit";
     private readonly string _die = "Die";
     
@@ -21,6 +24,8 @@ public class MonsterAnimationController : MonoBehaviour
     private int _isBattleHash;
     private int _isVictoryHash;
     private int _isDefenseHash;
+    private int _isGroggyHash;
+    private int _groggyHash;
     private int _hitHash;
     private int _dieHash;
     
@@ -35,6 +40,8 @@ public class MonsterAnimationController : MonoBehaviour
 
     public void InitOnActivate()
     {
+        AddAnimEndEvent<DieStateBehaviour>(()=>{this.gameObject.SetActive(false);});
+
     }
 
     public void Release()
@@ -101,6 +108,8 @@ public class MonsterAnimationController : MonoBehaviour
         _isDefenseHash = Animator.StringToHash(_isDefense);
         _hitHash = Animator.StringToHash(_hit);
         _dieHash = Animator.StringToHash(_die);
+        _isGroggyHash = Animator.StringToHash(_isGroggy);
+        _groggyHash = Animator.StringToHash(_groggy);
     }
 
     public void Attack(int type)
@@ -123,10 +132,22 @@ public class MonsterAnimationController : MonoBehaviour
         _animator.SetBool(_isDefenseHash,false);
     }
     
+    public void Groggy()
+    {
+        _animator.SetBool(_isGroggyHash,true);
+        _animator.SetTrigger(_groggyHash);
+    }
+    
+    public void StopGroggy()
+    {
+        _animator.SetBool(_isGroggyHash,false);
+    }
+    
     public void Hit()
     {
         _animator.SetTrigger(_hitHash);
     }
+    
     public void Die()
     {
         _animator.SetTrigger(_dieHash);

@@ -5,6 +5,7 @@
 		"NameID" : 401000,
 		"HP" : 3,
 		"Barrier" : 0,
+		"FatigueGauge" : 10,
 		"Attack" : 1,
 		"MaxIdleTime" : 1,
 		"HasDefense" : true,
@@ -24,8 +25,9 @@
 	{
 		"ID" : 101,
 		"NameID" : 401010,
-		"HP" : 3,
+		"HP" : 1,
 		"Barrier" : 0,
+		"FatigueGauge" : 10,
 		"Attack" : 1,
 		"MaxIdleTime" : 1,
 		"HasDefense" : false,

@@ -1,7 +1,7 @@
 using System;
 
 [Flags]
-public enum PlayerState
+public enum CharacterState
 {
     Idle,
     Move,

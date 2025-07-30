@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class Path
 {
+    public static string SystemMamanger = "Prefabs/Managers/SystemManager";
+    public static string GameManager = "Prefabs/Managers/GameManager";
+    public static string Character = "Prefabs/GameScene/Character";
+    public static string Camera = "Prefabs/GameScene/MainCam";
     public static string Monster(int id){ return "Prefabs/Monster/" + id; }
     public static string EquipModel(int id){return "Prefabs/Equipments/Model/" + id;}
 

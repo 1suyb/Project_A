@@ -1,21 +1,22 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     [SerializeField] private InputEventReceiver _inputEventReceiver;
-    public PlayerState PlayerState;
-    public Player Player { get; private set; }
+    [FormerlySerializedAs("PlayerState")] public CharacterState characterState;
+    public Character Character { get; private set; }
     
     private PlayerAttackAct _attackAct;
     private PlayerDefenseAct _defenseAct;
     
-    public void InitOnCreate(Player player)
+    public void InitOnCreate(Character character)
     {
         if(_inputEventReceiver == null)
             _inputEventReceiver = ResourceLoader.Load<InputEventReceiver>(Path.SO.InputEventReceiver);
         
-        Player = player;
+        Character = character;
         
         _attackAct = new PlayerAttackAct(this);
         _defenseAct = new PlayerDefenseAct(this);

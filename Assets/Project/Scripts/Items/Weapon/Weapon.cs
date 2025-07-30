@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private Player _player;
+    private Character _character;
 
-    public void SetPlayer(Player player)
+    public void SetPlayer(Character character)
     {
-        _player = player;
+        _character = character;
     }
     public void Attack()
     {
-        AttackHandler attackHandler = new AttackHandler(_player.PlayerStatus.StatHandler.Stat, 100);
+        AttackHandler attackHandler = new AttackHandler(_character.CharacterStatHandler.Stat, 100, new FixedDamage());
         GameManager.Instance.Monster.TakeDamage(attackHandler);
     }
 }

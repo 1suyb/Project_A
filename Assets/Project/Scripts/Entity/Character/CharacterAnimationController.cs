@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerAnimationController : MonoBehaviour
+public class CharacterAnimationController : MonoBehaviour
 {
-    private Player _player;
+    private Character _character;
     
     private Animator _rightAnim;
     private Animator _leftAnim;
@@ -21,15 +21,15 @@ public class PlayerAnimationController : MonoBehaviour
     {
         HashSetUp();
     }
-    public void InitOnCreate(Player player)
+    public void InitOnCreate(Character character)
     {
-        _player = player;
+        _character = character;
     }
     public void InitOnActivate()
     {
         GetAnimator(null);
-        _player.OnEquipped += GetAnimator;
-        _player.OnUnequipped += ReleaseAnimator;
+        _character.OnEquipped += GetAnimator;
+        _character.OnUnequipped += ReleaseAnimator;
     }
     public void OnDisable()
     {
@@ -44,9 +44,9 @@ public class PlayerAnimationController : MonoBehaviour
         
         EquipType type = equipment.EquipmentInfo.EquipType;
         if(type == EquipType.Weapon)
-            _rightAnim = _player.RightHand.GetComponentInChildren<Animator>();
+            _rightAnim = _character.RightHand.GetComponentInChildren<Animator>();
         else
-            _leftAnim = _player.LeftHand.GetComponentInChildren<Animator>();
+            _leftAnim = _character.LeftHand.GetComponentInChildren<Animator>();
     }
     private void ReleaseAnimator(Equipment equipment)
     {

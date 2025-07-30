@@ -1,11 +1,4 @@
-public struct PlayerConditionEvent
-{
-    public ConditionChangeArgs ConditionChangeArgs;
-    public PlayerConditionEvent(ConditionChangeArgs args)
-    {
-        ConditionChangeArgs = args;
-    }
-}
+
 
 public struct HealEvent
 {

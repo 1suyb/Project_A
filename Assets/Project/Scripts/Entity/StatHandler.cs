@@ -1,8 +1,17 @@
 using System;
 using System.Collections.Generic;
 
-public class StatHandler
+public enum StatModifyType
 {
+    Plus,
+    Multiplier,
+    Remove
+}
+
+public abstract class StatHandler
+{
+    private Entity _entity;
+    
     public Stat Stat { get; private set; }
     private Stat _baseStat;
     private Stat _increasedStat => Stat - _baseStat;
@@ -10,25 +19,50 @@ public class StatHandler
     private List<Stat> _addModifier = new List<Stat>();
     private List<Stat> _multiplierModifier = new List<Stat>();
     
-    public event Action<Stat> ChangeEvent;
-    
-    public StatHandler(Stat stat)
+    public event Action<Stat> OnChange;
+
+    public StatHandler(Entity entity)
     {
-        Stat = new Stat(stat);
-        _baseStat = new Stat(stat);
+        _entity = entity;
+        _baseStat = BaseStat();
+        Stat = new Stat();
+        Stat.Reset();
+        Stat.Copy(_baseStat);
+
+    }
+
+    protected abstract Stat BaseStat();
+
+    public void ApplyModifer(Stat stat, StatModifyType statModifyType )
+    {
+        switch (statModifyType)
+        {
+            case StatModifyType.Plus:
+                AddPlusModifier(stat);
+                break;
+            case StatModifyType.Multiplier:
+                AddMultiplierModifier(stat);
+                break;
+            case StatModifyType.Remove:
+                RemoveModifier(stat);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(statModifyType), statModifyType, null);
+        }
+        OnChange?.Invoke(Stat);
     }
     
-    public void AddModifier(Stat stat)
+    
+    private void AddPlusModifier(Stat stat)
     {
         _addModifier.Add(stat);
         Modify();
     }
-    public void AddMultiplierModifier(Stat stat)
+    private void AddMultiplierModifier(Stat stat)
     {
         _multiplierModifier.Add(stat);
         Modify();
     }
-
     private void Modify()
     {
         Stat.Reset();
@@ -41,9 +75,9 @@ public class StatHandler
         {
             Stat.Multiple(stat);
         }
-        ChangeEvent?.Invoke(Stat);
+        OnChange?.Invoke(Stat);
     }
-    public void RemoveModifier(Stat stat)
+    private void RemoveModifier(Stat stat)
     {
         if (_addModifier.Contains(stat))
         {

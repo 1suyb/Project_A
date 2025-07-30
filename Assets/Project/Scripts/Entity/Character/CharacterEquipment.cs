@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class PlayerEquipment : MonoBehaviour
+public class CharacterEquipment : MonoBehaviour
 {
-    public Player Player { get; private set; }
-    public PlayerStatus Status => Player.PlayerStatus;
+    public Character Character { get; private set; }
+    public CharacterStatHandler Status => Character.CharacterStatHandler;
     
-    public Transform RightHand => Player.RightHand;
-    public Transform LeftHand => Player.LeftHand;
+    public Transform RightHand => Character.RightHand;
+    public Transform LeftHand => Character.LeftHand;
     
     public Equipment Weapon { get; private set; }
     public Equipment Shield { get; private set; }
@@ -14,9 +14,9 @@ public class PlayerEquipment : MonoBehaviour
     public Transform WeaponObject { get; private set; }
     public Transform ShieldObject { get; private set; }
     
-    public void InitOnCreate(Player player)
+    public void InitOnCreate(Character character)
     {
-        Player = player;
+        Character = character;
     }
 
     public void InitOnActivate()
@@ -59,9 +59,9 @@ public class PlayerEquipment : MonoBehaviour
         
         foreach (var option in equipment.Options)
         {
-            option.Apply(Status);
+            //option.Apply(Status);
         }
-        Player.RaiseEquippedEvent(equipment);
+        Character.RaiseEquippedEvent(equipment);
     }
     /// <summary>
     /// 장착 해제
@@ -72,9 +72,9 @@ public class PlayerEquipment : MonoBehaviour
         
         foreach (var option in equipment.Options)
         {
-            option.Remove(Status);
+            //option.Remove(Status);
         }
-        Player.RaiseUnEquippedEvent(equipment);
+        Character.RaiseUnEquippedEvent(equipment);
     }
 
     /// <summary>
@@ -114,7 +114,7 @@ public class PlayerEquipment : MonoBehaviour
         Weapon = equipment;
         WeaponObject = InstantiateModel(equipment, RightHand);
         Weapon wp = AddEquipmentComponent<Weapon>(WeaponObject.gameObject);
-        wp.SetPlayer(Player);
+        wp.SetPlayer(Character);
     }
     
     /// <summary>

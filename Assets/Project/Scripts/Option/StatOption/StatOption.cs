@@ -3,7 +3,7 @@ public class StatOption : Option
     private Stat _stat;
     public override void Apply(Status status)
     {
-        switch (_optionInfo.OptionType)
+        /*switch (_optionInfo.OptionType)
         {
             case OptionType.Attack:
                 _stat = new StatBuilder().Attack(_optionInfo.Value).Build();
@@ -25,11 +25,11 @@ public class StatOption : Option
                 _stat = new StatBuilder().CriticalChance(_optionInfo.Value).Build();
                 status.ModifyStat(_stat,false);
                 break;
-        }
+        }*/
     }
 
     public override void Remove(Status status)
     {
-        status.RemoveStatModifier(_stat);
+        //status.RemoveStatModifier(_stat);
     }
 }

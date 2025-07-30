@@ -13,23 +13,28 @@ public class MonsterConditonHUD : HUD
     /// <param name="monster"></param>
     public void RegisterMonster(Monster monster)
     {
+        this.gameObject.SetActive(true);
+        _monsterConditon.Init();
         _monster = monster;
-        monster.AddChangeBarrierEvent(_monsterConditon.SetBarrierFill);
-        monster.AddChangeHpEvent(_monsterConditon.SetHPFill);
-        monster.AddDieEvent(UnRegisterMonster);
+        
+        _monster.OnDeath += UnRegisterMonster;
+        _monster.OnChangeBarrier += _monsterConditon.SetBarrierFill;
+        _monster.OnChangeHp += _monsterConditon.SetHPFill;
         
         int monsterNameID = monster.MonsterInfo.NameID;
         // Todo : Load monster name from StringManager 
         _monsterName.text = InfoManager.Instance.Load<LocalizedString>(monsterNameID).Eng;
     }
+    
     /// <summary>
     /// 몬스터의 정보를 HUD에서 제거합니다.
     /// 몬스터 사망시 자동 실행 됩니다.
     /// </summary>
     public void UnRegisterMonster()
     {
-        _monster.RemoveChangeBarrierEvent(_monsterConditon.SetBarrierFill);
-        _monster.RemoveChangeHpEvent(_monsterConditon.SetHPFill);
-        _monster.RemoveDieEvent(UnRegisterMonster);
+        this.gameObject.SetActive(false);
+        _monster.OnDeath -= UnRegisterMonster;
+        _monster.OnChangeBarrier -= _monsterConditon.SetBarrierFill;
+        _monster.OnChangeHp -= _monsterConditon.SetHPFill;
     }
 }

@@ -11,7 +11,7 @@ public class Skill
 
     public void Execute(IHittable target)
     {
-        AttackHandler attackHandler = new AttackHandler(_stat, CalcDamage());
+        AttackHandler attackHandler = new AttackHandler(_stat, CalcDamage(),new FixedDamage());
         target.TakeDamage(attackHandler);
     }
 

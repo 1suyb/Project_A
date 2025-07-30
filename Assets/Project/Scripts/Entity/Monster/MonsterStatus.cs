@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MonsterStatus : Status
 {
-    public Monster Monster { get; private set; }
+    /*public Monster Monster { get; private set; }
 
     public override void InitOnCreate(Entity entity)
     {
@@ -20,11 +20,11 @@ public class MonsterStatus : Status
         base.InitOnActivate();
         
         
-        Debug.Log($"StatHandler\n HP : {StatHandler.Stat.Hp} \n Barrier : {StatHandler.Stat.Barrier} \n" +
-                  $"Attack : {StatHandler.Stat.Attack} \n BarrierBonusAttack : {StatHandler.Stat.BarrierBonusAttack} \n" +
-                  $"CriticalChance : {StatHandler.Stat.CriticalChance}" +
-                  $"ConditionHandler\n HP : {ConditionHandler.Hp.ConditionValue}" +
-                  $"Barrier : {ConditionHandler.Barrier.ConditionValue}");
+        Debug.Log($"StatHandler\n HP : {Stat.Hp} \n Barrier : {Stat.Barrier} \n" +
+                  $"Attack : {Stat.Attack} \n BarrierBonusAttack : {Stat.BarrierBonusAttack} \n" +
+                  $"CriticalChance : {Stat.CriticalChance}" +
+                  $"ConditionHandler\n HP : {Hp}" +
+                  $"Barrier : {Barrier}");
     }
     public override void Release()
     {
@@ -33,11 +33,6 @@ public class MonsterStatus : Status
     
     protected override Stat BaseStat()
     {
-        MonsterInfo info = Monster.MonsterInfo;
-        return new StatBuilder()
-            .Hp(info.HP)
-            .Barrier(info.Barrier)
-            .Attack(info.Attack)
-            .Build();
-    }
+        return null;
+    }*/
 }

@@ -23,4 +23,9 @@ public class InfoManager : DonDestroySingleton<InfoManager>
         InfoLoader<T> loader = GetInfoLoader<T>();
         return loader.Load(id);
     }
+    public bool Contains<T>(int id) where T : LoadedInfoBase
+    {
+        InfoLoader<T> loader = GetInfoLoader<T>();
+        return loader.Contains(id);
+    }
 }

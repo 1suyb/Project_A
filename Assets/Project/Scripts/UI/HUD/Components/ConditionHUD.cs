@@ -5,6 +5,11 @@ public class ConditionHUD : HUD
 {
     [SerializeField] private Image _hpFill;
     [SerializeField] private Image _barrierFill;
+
+    public void Init()
+    {
+        _hpFill.fillAmount = 1;
+    }
     
     public void SetHPFill(ConditionChangeArgs args)
     {

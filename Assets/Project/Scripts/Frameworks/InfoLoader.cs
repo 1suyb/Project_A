@@ -40,5 +40,9 @@ public class InfoLoader<T> where T : LoadedInfoBase
     {
         return _infoList;
     }
+    public bool Contains(int id)
+    {
+        return _infoDic.ContainsKey(id);
+    }
 }
 

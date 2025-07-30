@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum InputState
 {
@@ -33,6 +34,10 @@ public class InputEventSource : MonoBehaviour
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId)) {
+                return; 
+            }
+            
             if (touch.phase == TouchPhase.Began)
             {
                 if (_inputState == InputState.Ended)
@@ -80,6 +85,8 @@ public class InputEventSource : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             _inputEventReceiver.TouchMoved();
         }
         if(Input.GetMouseButtonUp(0))
@@ -89,6 +96,8 @@ public class InputEventSource : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             _inputEventReceiver.TouchStationary();
         }
 

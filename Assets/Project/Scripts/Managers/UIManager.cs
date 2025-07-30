@@ -14,9 +14,8 @@ public class UIManager : Singleton<UIManager>
     private WindowManager _windowManager;
     private FloatingManager _floatingManager;
 
-    protected override void Awake()
+    protected override void InitOnCreate()
     {
-        base.Awake();
         _hudManager = GetComponentInChildren<HUDManager>();
         _hudManager.Init();
         _popupManager = GetComponentInChildren<PopupManager>();

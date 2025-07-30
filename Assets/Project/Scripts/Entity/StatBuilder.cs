@@ -2,6 +2,7 @@ public class StatBuilder
 {
     private int _hp = 0;
     private int _barrier = 0;
+    private int _stamina = 0;
     private int _barrierBonusAttack = 0;
     private int _attack = 0;
     private int _attackSpeed = 0;
@@ -15,6 +16,11 @@ public class StatBuilder
     public StatBuilder Barrier(int barrier)
     {
         _barrier = barrier;
+        return this;
+    }
+    public StatBuilder Stamina(int stamina)
+    {
+        _stamina = stamina;
         return this;
     }
     public StatBuilder BarrierBonusAttack(int barrierBonusAttack)
@@ -39,6 +45,6 @@ public class StatBuilder
     }
     public Stat Build()
     {
-        return new Stat(_hp, _barrier, _barrierBonusAttack, _attack, _attackSpeed, _criticalChance);
+        return new Stat(_hp, _barrier,_stamina, _barrierBonusAttack, _attack, _attackSpeed, _criticalChance);
     }
 }

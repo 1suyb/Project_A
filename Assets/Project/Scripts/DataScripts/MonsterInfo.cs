@@ -16,6 +16,10 @@ public class MonsterInfo : LoadedInfoBase
      /// </summary>
     public int Barrier;
      /// <summary>
+     /// 피로게이지
+     /// </summary>
+    public int FatigueGauge;
+     /// <summary>
      /// 공격력
      /// </summary>
     public int Attack;

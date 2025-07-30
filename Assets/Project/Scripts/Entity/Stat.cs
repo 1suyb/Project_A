@@ -2,16 +2,19 @@ public class Stat
 {
     public int Hp { get; private set; }
     public int Barrier{ get; private set; }
+    public int Stamina{ get; private set; } // 스태미너
     public int BarrierBonusAttack{ get; private set; }
     public int Attack{ get; private set; }
     public int AttackSpeed{ get; private set; } // 백분율
     public int CriticalChance{ get; private set; } // 만분율
+    
 
     public Stat(){}
-    public Stat(int hp, int barrier, int barrierBonusAttack, int attack,int attackSpeed, int criticalChance)
+    public Stat(int hp, int barrier,int stamina, int barrierBonusAttack, int attack,int attackSpeed, int criticalChance)
     {
         Hp = hp;
         Barrier = barrier;
+        Stamina = stamina;
         BarrierBonusAttack = barrierBonusAttack;
         Attack = attack;
         AttackSpeed = attackSpeed;
@@ -27,6 +30,7 @@ public class Stat
     {
         Hp = 0;
         Barrier = 0;
+        Stamina = 0;
         BarrierBonusAttack = 0;
         Attack = 0;
         AttackSpeed = 0;
@@ -37,6 +41,7 @@ public class Stat
     {
         Hp = stat.Hp;
         Barrier = stat.Barrier;
+        Stamina = stat.Stamina;
         BarrierBonusAttack = stat.BarrierBonusAttack;
         Attack = stat.Attack;
         AttackSpeed = stat.AttackSpeed;
@@ -47,6 +52,7 @@ public class Stat
     {
         Hp += stat.Hp;
         Barrier += stat.Barrier;
+        Stamina += stat.Stamina;
         BarrierBonusAttack += stat.BarrierBonusAttack;
         Attack += stat.Attack;
         AttackSpeed += stat.AttackSpeed;
@@ -56,6 +62,7 @@ public class Stat
     {
         Hp -= stat.Hp;
         Barrier -= stat.Barrier;
+        Stamina -= stat.Stamina;
         BarrierBonusAttack -= stat.BarrierBonusAttack;
         Attack -= stat.Attack;
         AttackSpeed -= stat.AttackSpeed;
@@ -67,6 +74,7 @@ public class Stat
         int radio = 10000;
         Hp *= 1 + stat.Hp/radio;
         Barrier *= 1+ stat.Barrier/radio;
+        Stamina *= 1+ stat.Stamina/radio;
         BarrierBonusAttack *= 1+ stat.BarrierBonusAttack/radio;
         Attack *= 1+ stat.Attack/radio;
         AttackSpeed *= 1+ stat.AttackSpeed/radio;

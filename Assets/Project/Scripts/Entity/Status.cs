@@ -3,9 +3,15 @@ using UnityEngine;
 
 public abstract class Status : MonoBehaviour
 {
-    public Entity Entity { get; protected set; }
+    /*public Entity Entity { get; protected set; }
     public StatHandler StatHandler { get; protected set; }
-    public ConditionHandler ConditionHandler { get; protected set; }
+    
+    public Condition HpCondition { get; protected set; }
+    public Condition BarrierCondition { get; protected set; }
+    
+    public int Hp => HpCondition.ConditionValue;
+    public int Barrier => BarrierCondition.ConditionValue;
+    
     public Stat Stat => StatHandler.Stat;
 
     public virtual void InitOnCreate(Entity entity)
@@ -14,78 +20,84 @@ public abstract class Status : MonoBehaviour
     }
     public virtual void InitOnActivate()
     {
-        if(StatHandler == null)
-            StatHandler = new StatHandler(BaseStat());
-        if(ConditionHandler == null)
-            ConditionHandler= new ConditionHandler(StatHandler.Stat);
-
-        StatHandler.ChangeEvent += ConditionHandler.SetMaxCondition;
+        //StatHandler ??= new StatHandler(BaseStat());
+        HpCondition ??= new Condition(StatHandler.Stat.Hp, true);
+        BarrierCondition ??= new Condition(StatHandler.Stat.Barrier, false);
     }
 
     public virtual void Release()
     {
-        StatHandler.ChangeEvent -= ConditionHandler.SetMaxCondition;
+        
     }
 
     protected abstract Stat BaseStat();
-    
-    public void TakeDamage(int damage)
-    {
-        ConditionHandler.TakeDamage(damage);
-    }
-    public void Heal(int heal, bool isOverHeal = false)
-    {
-        ConditionHandler.Heal(heal, isOverHeal);
-    }
     
     public void ModifyStat(Stat modifier, bool isAdd = true)
     {
         if (isAdd)
         {
-            StatHandler.AddModifier(modifier);
+            //StatHandler.AddPlusModifier(modifier);
         }
         else
         {
-            StatHandler.AddMultiplierModifier(modifier);
+            //StatHandler.AddMultiplierModifier(modifier);
         }
+        UpdateCondition();
     }
+    
     public void RemoveStatModifier(Stat modifier)
     {
-        StatHandler.RemoveModifier(modifier);
+        //StatHandler.RemoveModifier(modifier);
     }
+
+    public virtual void UpdateCondition()
+    {
+        HpCondition.MaxCondition = StatHandler.Stat.Hp;
+        BarrierCondition.MaxCondition = StatHandler.Stat.Barrier;
+    }
+    
+    public void TakeDamage(AttackHandler attackHandler)
+    {
+        //attackHandler.ApplyDamage(BarrierCondition, HpCondition);
+    }
+    public void Heal(int heal, bool isOverHeal = false)
+    {
+        
+    }
+    
     
     public void AddDieEvent(Action action)
     {
-        ConditionHandler.DieEvent += action;
+        HpCondition.OnExhausted += action;
     }
     public void AddHpChangeEvent(Action<ConditionChangeArgs> action)
     {
-        ConditionHandler.Hp.ChangeEvent += action;
+        HpCondition.OnChange += action;
     }
     public void AddBarrierChangeEvent(Action<ConditionChangeArgs> action)
     {
-        ConditionHandler.Barrier.ChangeEvent += action;
+        BarrierCondition.OnChange += action;
     }
     public void AddChangeStatEvent(Action<Stat> action)
     {
-        StatHandler.ChangeEvent += action;
+        StatHandler.OnChange += action;
     }
     
 
     public void RemoveDieEvent(Action action)
     {
-        ConditionHandler.DieEvent -= action;
+        HpCondition.OnExhausted -= action;
     }
     public void RemoveHpChangeEvent(Action<ConditionChangeArgs> action)
     {
-        ConditionHandler.Hp.ChangeEvent -= action;
+        HpCondition.OnChange -= action;
     }
     public void RemoveBarrierChangeEvent(Action<ConditionChangeArgs> action)
     {
-        ConditionHandler.Barrier.ChangeEvent -= action;
+        BarrierCondition.OnChange -= action;
     }
     public void RemoveChangeStatEvent(Action<Stat> action)
     {
-        StatHandler.ChangeEvent -= action;
-    }
+        StatHandler.OnChange -= action;
+    }*/
 }

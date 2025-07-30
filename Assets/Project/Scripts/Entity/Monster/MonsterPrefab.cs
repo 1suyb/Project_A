@@ -8,7 +8,7 @@ public class MonsterPrefab : MonoBehaviour
     private Monster _monster;
     private MonsterAI _monsterAI => _monster.MonsterAI;
     private MonsterInfo _monsterInfo => _monster.MonsterInfo;
-    private Stat Stat => _monster.MonsterStatus.Stat;
+    private Stat Stat => _monster.MonsterStatHandler.Stat;
     private Skill[] _skills;
     public void InitOnCreate(Monster monster)
     {
@@ -35,7 +35,7 @@ public class MonsterPrefab : MonoBehaviour
     
     public void Attack()
     {
-        _skills[_monsterAI.AttackType].Execute(GameManager.Instance.Player);
+        _skills[_monsterAI.AttackType].Execute(GameManager.Instance.Character);
     }
     
 }

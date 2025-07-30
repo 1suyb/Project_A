@@ -8,10 +8,13 @@ public class Monster : Entity, ILoadable, IHittable
     public MonsterAnimationController MonsterAnimController { get; private set; }
     public MonsterAI MonsterAI { get; private set; }
     public MonsterPrefab MonsterPrefab { get; private set; }
-
-    public MonsterStatus MonsterStatus { get; private set; }
+    public MonsterStatHandler MonsterStatHandler { get; private set; }
+    public MonsterConditionHandler MonsterConditionHandler { get; private set; }
 
     public event Action OnHit;
+    public event Action OnDeath;
+    public event Action<ConditionChangeArgs> OnChangeBarrier;
+    public event Action<ConditionChangeArgs> OnChangeHp;
     public event Action OnDisabled;
 
     public bool IsDamageable => MonsterAI.IsDamageable;
@@ -28,26 +31,26 @@ public class Monster : Entity, ILoadable, IHittable
 
     public void InitOnCreate()
     {
-        MonsterAnimController = GetComponent<MonsterAnimationController>();
         MonsterAI = GetComponent<MonsterAI>();
-        MonsterStatus = GetComponent<MonsterStatus>();
-        
+        MonsterAnimController = GetComponent<MonsterAnimationController>();
+
         MonsterAnimController.InitOnCreate();
         MonsterAI.InitOnCreate(this);
-        MonsterStatus.InitOnCreate(this);
         MonsterPrefab.InitOnCreate(this);
+        
     }
 
     public void InitOnActivate()
     { 
-        // TODO : 몬스터 AI에서 Status의 Die를 참조해야해서 Status와 AI 순서간의 의존성 문제 발생
-        MonsterStatus.InitOnActivate();
+        gameObject.SetActive(true);
+        
         MonsterAI.InitOnActivate();
         MonsterPrefab.InitOnActivate();
+        MonsterAnimController.InitOnActivate();
         
-        // TODO : UI Test Code. 나중에 다른데로 옮기기
-        UIManager.HUD.MonsterConditionHUD.RegisterMonster(this);
-        MonsterAnimController.AddAnimEndEvent<DieStateBehaviour>(()=>{this.gameObject.SetActive(false);});
+        MonsterStatHandler = new MonsterStatHandler(this);
+        MonsterConditionHandler = new MonsterConditionHandler(this, MonsterStatHandler);
+
     }
 
     public void OnDisable()
@@ -57,15 +60,15 @@ public class Monster : Entity, ILoadable, IHittable
 
     public void Release()
     {
-        MonsterAnimController.Release();
-        MonsterAI.Release();
-        MonsterStatus.Release();
-        MonsterPrefab.Release();
+        if (MonsterAnimController != null) MonsterAnimController.Release();
+        if (MonsterAI != null) MonsterAI.Release();
+        //if (MonsterStatHandler != null) MonsterStatHandler.Release();
+        if (MonsterPrefab != null) MonsterPrefab.Release();
         OnDisabled?.Invoke();
         OnDisabled = null;
     }
     
-    public void TakeDamage(AttackHandler damage)
+    public void TakeDamage(AttackHandler attackHandler)
     {
         if (IsHittable)
         {
@@ -73,61 +76,14 @@ public class Monster : Entity, ILoadable, IHittable
         }
         if (IsDamageable)
         {
-            MonsterStatus.TakeDamage(damage.CalcDamage(MonsterStatus.Stat));
+            //MonsterStatHandler.TakeDamage(attackHandler);
         }
         
     }
     public void Heal(int heal, bool isOverHeal = false)
     {
-        MonsterStatus.Heal(heal, isOverHeal);
-    }
-
-    #region AddEvent
-
-    public void AddDieEvent(Action action)
-    {
-        MonsterStatus.AddDieEvent(action);
-    }
-    public void AddChangeHpEvent(Action<ConditionChangeArgs> action)
-    {
-        MonsterStatus.AddHpChangeEvent(action);
-    }
-    public void AddChangeBarrierEvent(Action<ConditionChangeArgs> action)
-    {
-        MonsterStatus.AddBarrierChangeEvent(action);
-    }
-    public void AddChangeStatEvent(Action<Stat> action)
-    {
-        MonsterStatus.AddChangeStatEvent(action);
-    }
-
-    public void AddDisableEvent(Action action)
-    {
-        OnDisabled += action;
-    }
-
-    #endregion
-    #region RemoveEvent
-    public void RemoveDieEvent(Action action)
-    {
-        MonsterStatus.RemoveDieEvent(action);
-    }
-    public void RemoveChangeHpEvent(Action<ConditionChangeArgs> action)
-    {
-        MonsterStatus.RemoveHpChangeEvent(action);
-    }
-    public void RemoveChangeBarrierEvent(Action<ConditionChangeArgs> action)
-    {
-        MonsterStatus.RemoveBarrierChangeEvent(action);
-    }
-    public void RemoveChangeStatEvent(Action<Stat> action)
-    {
-        MonsterStatus.RemoveChangeStatEvent(action);
+        //MonsterStatHandler.Heal(heal, isOverHeal);
     }
     
-
-    #endregion
-
-
-
+    
 }
